@@ -12,8 +12,22 @@ export default {
         "2xl": "1400px",
       },
     },
+    fontFamily: {
+      sans: ['Inter', 'sans-serif'],
+      display: ['Plus Jakarta Sans', 'sans-serif'],
+    },
     extend: {
       colors: {
+        teal: {
+          light: "hsl(var(--teal-light))",
+          medium: "hsl(var(--teal-medium))",
+          dark: "hsl(var(--teal-dark))",
+        },
+        orange: {
+          warm: "hsl(var(--orange-warm))",
+          hover: "hsl(var(--orange-hover))",
+        },
+        trust: "hsl(var(--green-trust))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
