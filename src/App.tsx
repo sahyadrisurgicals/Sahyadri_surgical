@@ -10,6 +10,10 @@ import ICUAtHome from "./pages/ICUAtHome.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import Dashboard from "./pages/admin/Dashboard.tsx";
+import ProductsAdmin from "./pages/admin/ProductsAdmin.tsx";
+import InquiriesAdmin from "./pages/admin/InquiriesAdmin.tsx";
+import SettingsAdmin from "./pages/admin/SettingsAdmin.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +30,10 @@ const App = () => (
           <Route path="/icu-at-home" element={<ICUAtHome />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/admin/products" element={<ProductsAdmin />} />
+          <Route path="/admin/inquiries" element={<InquiriesAdmin />} />
+          <Route path="/admin/settings" element={<SettingsAdmin />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
