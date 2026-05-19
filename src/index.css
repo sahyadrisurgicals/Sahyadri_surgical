@@ -1,0 +1,163 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --background: 180 20% 99%;
+    --foreground: 200 25% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 25% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 25% 10%;
+
+    --primary: 180 100% 25%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 180 15% 95%;
+    --secondary-foreground: 180 100% 20%;
+
+    --muted: 180 10% 96%;
+    --muted-foreground: 200 10% 45%;
+
+    --accent: 25 95% 55%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 180 15% 90%;
+    --input: 180 15% 90%;
+    --ring: 180 100% 25%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 180 20% 98%;
+    --sidebar-foreground: 200 25% 10%;
+    --sidebar-primary: 180 100% 25%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 180 15% 95%;
+    --sidebar-accent-foreground: 200 25% 10%;
+    --sidebar-border: 180 15% 90%;
+    --sidebar-ring: 180 100% 25%;
+
+    /* Custom tokens */
+    --teal-light: 180 60% 95%;
+    --teal-medium: 180 80% 35%;
+    --teal-dark: 180 100% 18%;
+    --orange-warm: 25 95% 55%;
+    --orange-hover: 25 95% 48%;
+    --green-trust: 145 60% 42%;
+    --gradient-hero: linear-gradient(135deg, hsl(180 100% 25%), hsl(180 80% 35%));
+    --gradient-cta: linear-gradient(135deg, hsl(25 95% 55%), hsl(15 90% 50%));
+    --shadow-card: 0 4px 20px -4px hsl(180 20% 10% / 0.08);
+    --shadow-card-hover: 0 8px 30px -4px hsl(180 20% 10% / 0.15);
+    --shadow-header: 0 2px 20px -2px hsl(180 20% 10% / 0.1);
+  }
+
+  .dark {
+    --background: 200 25% 6%;
+    --foreground: 180 10% 95%;
+    --card: 200 20% 10%;
+    --card-foreground: 180 10% 95%;
+    --popover: 200 20% 10%;
+    --popover-foreground: 180 10% 95%;
+    --primary: 180 80% 45%;
+    --primary-foreground: 200 25% 6%;
+    --secondary: 200 15% 15%;
+    --secondary-foreground: 180 10% 90%;
+    --muted: 200 15% 15%;
+    --muted-foreground: 200 10% 60%;
+    --accent: 25 90% 55%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 200 15% 18%;
+    --input: 200 15% 18%;
+    --ring: 180 80% 45%;
+    --sidebar-background: 200 20% 8%;
+    --sidebar-foreground: 180 10% 95%;
+    --sidebar-primary: 180 80% 45%;
+    --sidebar-primary-foreground: 200 25% 6%;
+    --sidebar-accent: 200 15% 15%;
+    --sidebar-accent-foreground: 180 10% 95%;
+    --sidebar-border: 200 15% 18%;
+    --sidebar-ring: 180 80% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-cta {
+    background: var(--gradient-cta);
+  }
+
+  .card-shadow {
+    box-shadow: var(--shadow-card);
+  }
+
+  .card-shadow-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .header-shadow {
+    box-shadow: var(--shadow-header);
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .animate-delay-100 { animation-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; }
+}

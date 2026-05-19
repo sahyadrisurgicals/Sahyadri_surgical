@@ -1,0 +1,20 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="760" fill="#EEF2F4"/>
+  <rect y="520" width="1200" height="240" fill="#E1E6EA"/>
+  <path d="M0 520L1200 420V760H0V520Z" fill="#D6DEE4"/>
+  <g transform="translate(380 120)">
+    <circle cx="300" cy="430" r="150" stroke="#6B7A8A" stroke-width="16"/>
+    <circle cx="300" cy="430" r="28" fill="#627080"/>
+    <circle cx="138" cy="530" r="42" stroke="#6B7A8A" stroke-width="12"/>
+    <circle cx="470" cy="560" r="34" stroke="#6B7A8A" stroke-width="10"/>
+    <rect x="220" y="110" width="140" height="170" rx="12" fill="#334260"/>
+    <rect x="205" y="275" width="195" height="34" rx="8" fill="#596581"/>
+    <path d="M380 310L470 560" stroke="#6B7A8A" stroke-width="16"/>
+    <path d="M220 305L138 530" stroke="#6B7A8A" stroke-width="16"/>
+    <path d="M220 110L170 180" stroke="#6B7A8A" stroke-width="14"/>
+    <rect x="168" y="170" width="20" height="150" fill="#6B7A8A"/>
+    <path d="M400 130L485 210" stroke="#6B7A8A" stroke-width="14"/>
+    <rect x="465" y="205" width="24" height="120" fill="#6B7A8A"/>
+  </g>
+  <text x="560" y="420" text-anchor="middle" fill="#305A97" fill-opacity="0.25" font-size="92" font-family="Arial" font-weight="700">QUALI5CARE</text>
+</svg>
