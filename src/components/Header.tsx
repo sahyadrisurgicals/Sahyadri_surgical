@@ -23,14 +23,14 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 border-b border-[#e3e8ef] bg-white header-shadow">
       <div className="section-container">
-        <div className="flex h-16 items-center md:h-[74px]">
+        <div className="flex h-14 items-center md:h-[60px]">
           {/* Logo */}
           <Link to="/" className="flex shrink-0 items-center gap-2 pr-4 sm:pr-6 md:border-r md:border-[#e3e8ef]">
-            <div className="w-10 h-10 rounded-xl gradient-hero flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-lg">S</span>
+            <div className="h-9 w-9 rounded-xl gradient-hero flex items-center justify-center">
+              <span className="text-primary-foreground font-display font-bold text-base">S</span>
             </div>
             <div className="hidden sm:block">
-              <h1 className="font-display font-bold text-lg leading-tight text-[#2d5ea9]">Sahyadri</h1>
+              <h1 className="font-display font-bold text-base leading-tight text-[#2d5ea9]">Sahyadri</h1>
               <p className="text-xs text-[#7a8599] -mt-0.5">Surgicals</p>
             </div>
           </Link>
@@ -44,7 +44,7 @@ const Header = () => {
                 placeholder="Search Products"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-11 w-full rounded-sm border border-[#d9dde5] bg-[#f8f9fc] pl-11 pr-4 text-sm text-[#3f4757] placeholder:text-[#a0a8b8] focus:border-[#a7bad7] focus:outline-none focus:ring-1 focus:ring-[#a7bad7]"
+                className="h-9 w-full rounded-sm border border-[#d9dde5] bg-[#f8f9fc] pl-11 pr-4 text-sm text-[#3f4757] placeholder:text-[#a0a8b8] focus:border-[#a7bad7] focus:outline-none focus:ring-1 focus:ring-[#a7bad7]"
               />
             </div>
           </form>
@@ -53,19 +53,19 @@ const Header = () => {
           <nav className="hidden h-full items-stretch border-l border-[#e3e8ef] lg:flex">
             <Link
               to="/products?mode=rent"
-              className="flex items-center justify-center border-r border-[#e3e8ef] bg-[#d7e4f5] px-8 text-sm font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#cdddf2]"
+              className="flex items-center justify-center border-r border-[#e3e8ef] bg-[#d7e4f5] px-7 text-sm font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#cdddf2]"
             >
               RENT
             </Link>
             <Link
               to="/products?mode=buy"
-              className="flex items-center justify-center border-r border-[#e3e8ef] px-8 text-sm font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#f4f7fb]"
+              className="flex items-center justify-center border-r border-[#e3e8ef] px-7 text-sm font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#f4f7fb]"
             >
               BUY
             </Link>
             <Link
               to="/blog"
-              className="flex items-center justify-center border-r border-[#e3e8ef] px-8 text-sm font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#f4f7fb]"
+              className="flex items-center justify-center border-r border-[#e3e8ef] px-7 text-sm font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#f4f7fb]"
             >
               BLOG
             </Link>
@@ -75,7 +75,7 @@ const Header = () => {
           <div className="hidden items-center gap-3 pl-4 lg:flex">
             <a
               href={`tel:${callNumber}`}
-              className="flex items-center gap-2 rounded-full bg-[#2f5ca6] px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="flex items-center gap-2 rounded-full bg-[#2f5ca6] px-4 py-1.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               <Phone className="h-4 w-4" />
               <span>98765 43210</span>
@@ -84,7 +84,7 @@ const Header = () => {
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full bg-[#1fae4b] px-4 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              className="flex items-center gap-2 rounded-full bg-[#1fae4b] px-4 py-1.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               <span>WhatsApp</span>
             </a>

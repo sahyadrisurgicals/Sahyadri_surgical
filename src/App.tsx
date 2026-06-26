@@ -11,6 +11,14 @@ import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import Blog from "./pages/Blog.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import {
+  PrivacyPolicy,
+  ReferAndEarn,
+  ServicePolicy,
+  ShippingCancellationPolicy,
+  TermsConditions,
+  VendorRegistration,
+} from "./pages/FooterPages.tsx";
 import Dashboard from "./pages/admin/Dashboard.tsx";
 import ProductsAdmin from "./pages/admin/ProductsAdmin.tsx";
 import InquiriesAdmin from "./pages/admin/InquiriesAdmin.tsx";
@@ -32,6 +40,12 @@ const App = () => (
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/vendor-registration" element={<VendorRegistration />} />
+          <Route path="/service-policy" element={<ServicePolicy />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/shipping-cancellation-policy" element={<ShippingCancellationPolicy />} />
+          <Route path="/terms-conditions" element={<TermsConditions />} />
+          <Route path="/refer-and-earn" element={<ReferAndEarn />} />
           <Route path="/admin" element={<Dashboard />} />
           <Route path="/admin/products" element={<ProductsAdmin />} />
           <Route path="/admin/inquiries" element={<InquiriesAdmin />} />
