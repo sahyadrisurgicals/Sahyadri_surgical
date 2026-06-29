@@ -94,11 +94,11 @@ const About = () => {
                 Sahyadri Surgical helps families rent or buy reliable medical equipment for recovery, elderly care,
                 mobility support, respiratory care, and ICU-at-home needs.
               </p>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <Button asChild className="bg-white text-[#315f9d] hover:bg-white/90">
+              <div className="mt-7 grid grid-cols-1 gap-3 min-[420px]:flex min-[420px]:flex-wrap">
+                <Button asChild className="w-full bg-white text-[#315f9d] hover:bg-white/90 min-[420px]:w-auto">
                   <Link to="/products">Explore Products</Link>
                 </Button>
-                <Button asChild variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
+                <Button asChild variant="outline" className="w-full border-white/40 bg-transparent text-white hover:bg-white/10 min-[420px]:w-auto">
                   <Link to="/contact">Contact Team</Link>
                 </Button>
               </div>
@@ -125,14 +125,14 @@ const About = () => {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#e9eff8]">
                 <Stethoscope className="h-6 w-6 text-[#315f9d]" />
               </div>
-              <h2 className="font-display text-2xl font-bold text-[#111827]">What We Do</h2>
+              <h2 className="font-display text-2xl font-bold text-[#111827]">About Us</h2>
               <p className="mt-4 text-sm leading-7 text-[#5f6673]">
-                We bridge the gap between hospital discharge and safe home recovery by helping families access the
-                equipment they need without unnecessary delay or heavy upfront purchase pressure.
-              </p>
-              <p className="mt-4 text-sm leading-7 text-[#5f6673]">
-                From short-term rentals to long-term purchase requirements, our focus is practical support, transparent
-                communication, and dependable equipment availability.
+                At the heart of every recovery is a comfortable environment. We bridge the gap between advanced hospital
+                care and the comfort of your home by providing premium medical equipment for rent and sale. Whether it's
+                an urgent need for critical respiratory support or long-term mobility assistance, we ensure that families
+                have immediate access to certified, hospital-grade technology without the heavy financial burden. We
+                don't just deliver machinery; we deliver peace of mind, reliability, and a commitment to standing by your
+                side when health takes top priority.
               </p>
             </div>
 
@@ -209,14 +209,14 @@ const About = () => {
                 Speak with Sahyadri Surgical for rent, purchase, or home-care equipment support.
               </p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild className="bg-white text-[#315f9d] hover:bg-white/90">
+            <div className="grid grid-cols-1 gap-3 min-[420px]:flex min-[420px]:flex-wrap">
+              <Button asChild className="w-full bg-white text-[#315f9d] hover:bg-white/90 min-[420px]:w-auto">
                 <a href="tel:+919876543210">
                   <Phone className="mr-2 h-4 w-4" />
                   Call Now
                 </a>
               </Button>
-              <Button asChild variant="outline" className="border-white/40 bg-transparent text-white hover:bg-white/10">
+              <Button asChild variant="outline" className="w-full border-white/40 bg-transparent text-white hover:bg-white/10 min-[420px]:w-auto">
                 <Link to="/products">View Equipment</Link>
               </Button>
             </div>

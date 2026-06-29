@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const MobileBottomBar = () => {
   return (
-    <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-card border-t border-border header-shadow">
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card pb-[env(safe-area-inset-bottom)] header-shadow md:hidden">
       <div className="grid grid-cols-4 h-14">
         <Link to="/" className="flex flex-col items-center justify-center gap-0.5 text-muted-foreground hover:text-primary">
           <Home className="w-5 h-5" />

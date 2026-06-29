@@ -101,6 +101,32 @@ export const products: Product[] = [
     available: true,
   },
   {
+    id: "tripod-walking-stick",
+    name: "Tripod Walking Stick",
+    category: "walkers",
+    rentPrice: 450,
+    rentUnit: "month",
+    buyPrice: 1600,
+    image: "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=400&h=300&fit=crop",
+    description:
+      "Self-standing tripod walking stick with a broad three-pronged base for better balance, fall prevention, and stable home mobility support.",
+    specs: [
+      "Three-pronged self-standing base",
+      "Height-adjustable shaft",
+      "Reinforced aluminium body",
+      "Anti-slip rubber tips",
+      "Suitable for elderly and post-surgery support",
+    ],
+    features: [
+      "Maximum base stability",
+      "Broad-load support",
+      "Dual-sided orientation",
+      "Heavy-duty aluminium frame",
+      "Non-slip floor grip",
+    ],
+    available: true,
+  },
+  {
     id: "patient-monitor",
     name: "Multi-Para Patient Monitor",
     category: "patient-monitors",

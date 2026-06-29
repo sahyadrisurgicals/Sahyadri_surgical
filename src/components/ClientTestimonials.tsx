@@ -238,7 +238,7 @@ const ClientTestimonials = () => {
 
           <article className="mt-5 rounded-lg border border-[#d9e2ef] bg-[#f4f8ff] p-4">
             <h3 className="text-sm font-bold uppercase tracking-[0.08em] text-[#111827]">Get In Touch</h3>
-            <p className="mt-2 text-sm leading-relaxed text-[#4f5b6b]">
+            <p className="mt-2 break-words text-sm leading-relaxed text-[#4f5b6b]">
               Phone: <a href="tel:+919876543210" className="font-semibold text-[#2f5ca6]">+91 98765 43210</a> |
               {" "}WhatsApp: <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="font-semibold text-[#2f5ca6]">+91 98765 43210</a> |
               {" "}Email: <a href="mailto:info@sahyadrisurgicals.com" className="font-semibold text-[#2f5ca6]">info@sahyadrisurgicals.com</a> |

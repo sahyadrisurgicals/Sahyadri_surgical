@@ -75,7 +75,7 @@ const CategoryGrid = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10">
+        <div className="grid grid-cols-2 gap-3 min-[420px]:grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10">
           {categoryTiles.map((cat, i) => (
             <motion.div
               key={cat.name}
@@ -86,12 +86,12 @@ const CategoryGrid = () => {
             >
               <Link
                 to={`/products?search=${encodeURIComponent(cat.query)}`}
-                className="group flex h-[126px] flex-col items-center justify-center rounded-lg border border-[#dde2ec] bg-white px-2 text-center shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md"
+                className="group flex min-h-[112px] flex-col items-center justify-center rounded-lg border border-[#dde2ec] bg-white px-2 py-3 text-center shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:min-h-[126px]"
               >
                 <div className="mb-2 rounded-full bg-[#edf2fb] p-2.5 text-[#305da2] transition-transform duration-200 group-hover:scale-105">
                   <cat.icon className="h-5 w-5" />
                 </div>
-                <span className="text-[13px] font-medium leading-tight text-[#214f93]">
+                <span className="break-words text-[12px] font-medium leading-tight text-[#214f93] sm:text-[13px]">
                   {cat.name}
                 </span>
               </Link>

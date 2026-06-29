@@ -42,16 +42,16 @@ const ICUAtHome = () => {
       <Header />
 
       {/* Hero */}
-      <section className="gradient-hero py-16 md:py-24">
+      <section className="gradient-hero py-12 md:py-24">
         <div className="section-container text-center">
-          <h1 className="font-display text-3xl md:text-5xl font-extrabold text-primary-foreground mb-4">
+          <h1 className="mb-4 font-display text-3xl font-extrabold text-primary-foreground md:text-5xl">
             ICU at Home
           </h1>
-          <p className="text-primary-foreground/80 text-lg max-w-2xl mx-auto mb-8">
+          <p className="mx-auto mb-8 max-w-2xl text-base leading-7 text-primary-foreground/80 md:text-lg">
             Hospital-grade critical care delivered to your doorstep. Save up to 70% compared to hospital ICU charges.
           </p>
           <a href="tel:+919876543210">
-            <Button className="gradient-cta text-primary-foreground border-0 px-8 py-6 text-base rounded-xl hover:opacity-90">
+            <Button className="w-full rounded-xl border-0 gradient-cta px-5 py-6 text-base text-primary-foreground hover:opacity-90 min-[420px]:w-auto min-[420px]:px-8">
               <Phone className="w-5 h-5 mr-2" /> Book Free Assessment
             </Button>
           </a>
@@ -59,12 +59,12 @@ const ICUAtHome = () => {
       </section>
 
       {/* How It Works */}
-      <section className="py-16">
+      <section className="py-12 md:py-16">
         <div className="section-container">
           <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center mb-12">
             How It Works
           </h2>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
             {steps.map((s, i) => (
               <motion.div
                 key={i}
@@ -86,14 +86,14 @@ const ICUAtHome = () => {
       </section>
 
       {/* Packages */}
-      <section className="py-16 bg-secondary/50">
+      <section className="bg-secondary/50 py-12 md:py-16">
         <div className="section-container">
           <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground text-center mb-4">
             Choose Your Package
           </h2>
           <p className="text-muted-foreground text-center mb-12">All packages include delivery, setup, and maintenance</p>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {packages.map((pkg, i) => (
               <motion.div
                 key={i}

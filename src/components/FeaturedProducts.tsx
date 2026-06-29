@@ -70,15 +70,15 @@ const FeaturedProducts = () => {
                 />
               </div>
               <div className="px-4 pb-4 pt-3.5">
-                <h3 className="line-clamp-1 text-base font-medium text-[#1c1c1e]">{item.name}</h3>
+                <h3 className="line-clamp-2 min-h-[2.5rem] text-sm font-medium leading-5 text-[#1c1c1e] sm:text-base">{item.name}</h3>
                 <p className="mt-1 text-xs text-[#6f7075]">{item.subtitle}</p>
                 <div className="mt-2 border-t border-[#d7d9de] pt-3">
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="whitespace-nowrap text-lg font-semibold leading-none text-[#1f2022]">
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="whitespace-nowrap text-base font-semibold leading-none text-[#1f2022] sm:text-lg">
                       {item.price}
                     </p>
-                    <Link to={`/products?search=${encodeURIComponent(item.search)}`}>
-                      <Button className="h-8 min-w-[102px] whitespace-nowrap rounded-md bg-[#2f5ca6] px-3 text-sm font-medium text-white hover:bg-[#285096]">
+                    <Link to={`/products?search=${encodeURIComponent(item.search)}`} className="min-w-[102px] flex-1 sm:flex-none">
+                      <Button className="h-8 w-full whitespace-nowrap rounded-md bg-[#2f5ca6] px-3 text-sm font-medium text-white hover:bg-[#285096]">
                         Rent Now
                       </Button>
                     </Link>

@@ -142,7 +142,7 @@ const HeroBanner = () => {
             {slides.map((slide) => (
               <CarouselItem key={slide.id} className="basis-full pl-0">
                 <article
-                  className={`relative min-h-[295px] overflow-hidden rounded-none bg-gradient-to-br p-6 text-white md:min-h-[360px] md:p-8 ${slide.tone}`}
+                  className={`relative min-h-[315px] overflow-hidden rounded-none bg-gradient-to-br p-4 text-white sm:p-6 md:min-h-[360px] md:p-8 ${slide.tone}`}
                 >
                   <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full border border-white/20" />
                   <div className="absolute -right-6 bottom-5 hidden h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur-sm md:flex">
@@ -150,12 +150,14 @@ const HeroBanner = () => {
                   </div>
                   <div className="relative z-10 flex h-full flex-col">
                     <div>
-                      <p className="inline-flex rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide">
+                      <p className="inline-flex max-w-full rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide">
                         {slide.badge}
                       </p>
-                      <h2 className="mt-4 font-display text-3xl font-extrabold leading-tight">{slide.title}</h2>
+                      <h2 className="mt-4 max-w-[18rem] font-display text-2xl font-extrabold leading-tight min-[380px]:max-w-md sm:text-3xl md:max-w-xl">
+                        {slide.title}
+                      </h2>
                       <p className="mt-3 max-w-xl text-sm text-white/85 md:text-base">{slide.description}</p>
-                      <ul className="mt-4 space-y-1.5 text-sm text-white/90">
+                      <ul className="mt-4 space-y-1.5 text-sm leading-6 text-white/90">
                         {slide.points.map((point) => (
                           <li key={point}>- {point}</li>
                         ))}

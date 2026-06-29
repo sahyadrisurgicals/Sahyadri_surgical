@@ -30,7 +30,7 @@ const Products = () => {
       );
     }
     return result;
-  }, [selectedCategory, searchQuery]);
+  }, [products, selectedCategory, searchQuery]);
 
   return (
     <div className="min-h-screen bg-background pb-16 md:pb-0">
@@ -45,7 +45,7 @@ const Products = () => {
 
         <div className="flex gap-6">
           {/* Sidebar Filters */}
-          <aside className={`${showFilters ? "fixed inset-0 z-50 bg-card p-6 overflow-y-auto" : "hidden"} lg:block lg:relative lg:w-60 shrink-0`}>
+          <aside className={`${showFilters ? "fixed inset-0 z-50 overflow-y-auto bg-card p-4 sm:p-6" : "hidden"} shrink-0 lg:relative lg:block lg:w-60`}>
             <div className="flex items-center justify-between lg:hidden mb-4">
               <h3 className="font-display font-bold text-lg">Filters</h3>
               <button onClick={() => setShowFilters(false)}><X className="w-5 h-5" /></button>
@@ -94,7 +94,7 @@ const Products = () => {
 
           {/* Product Grid */}
           <div className="flex-1">
-            <div className="flex items-center justify-between mb-4">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
               <p className="text-sm text-muted-foreground">
                 {loading ? "Loading products..." : `${filtered.length} products found`}
               </p>
@@ -102,7 +102,7 @@ const Products = () => {
                 <Filter className="w-4 h-4 mr-1" /> Filters
               </Button>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+            <div className="grid grid-cols-1 gap-4 min-[420px]:grid-cols-2 md:grid-cols-3 md:gap-6">
               {filtered.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}

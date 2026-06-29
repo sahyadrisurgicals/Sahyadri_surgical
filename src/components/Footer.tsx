@@ -27,17 +27,17 @@ const footerColumns = [
 const Footer = () => {
   return (
     <footer className="bg-white text-[#2f5f9d]">
-      <div className="bg-[#315f9d] px-8 py-4 text-white md:px-12">
-        <div className="grid gap-8 md:grid-cols-3 md:gap-16">
+      <div className="bg-[#315f9d] px-4 py-6 text-white sm:px-6 md:px-12">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-16">
           {footerColumns.map((column) => (
             <nav key={column.title} aria-label={column.title}>
-              <h4 className="mb-4 text-sm font-bold uppercase tracking-tight text-white md:text-base">
+              <h4 className="mb-4 break-words text-sm font-bold uppercase tracking-tight text-white md:text-base">
                 {column.title}
               </h4>
               <ul className="space-y-3">
                 {column.links.map((link) => (
                   <li key={link.to}>
-                    <Link to={link.to} className="text-sm text-white/95 transition-colors hover:text-white md:text-base">
+                    <Link to={link.to} className="break-words text-sm text-white/95 transition-colors hover:text-white md:text-base">
                       {link.label}
                     </Link>
                   </li>

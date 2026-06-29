@@ -29,7 +29,7 @@ const InquiryForm = () => {
   };
 
   return (
-    <section className="py-16 gradient-hero">
+    <section className="gradient-hero py-12 md:py-16">
       <div className="section-container">
         <div className="max-w-2xl mx-auto text-center">
           <h2 className="font-display text-2xl md:text-3xl font-bold text-primary-foreground mb-2">
@@ -38,7 +38,7 @@ const InquiryForm = () => {
           <p className="text-primary-foreground/80 mb-8">
             Tell us what you need and we'll get back to you within 30 minutes
           </p>
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap lg:flex-nowrap">
             <Input
               placeholder="Your Name"
               value={form.name}
@@ -64,7 +64,7 @@ const InquiryForm = () => {
             <Button
               type="submit"
               disabled={submitting}
-              className="gradient-cta text-primary-foreground border-0 px-8 rounded-xl shrink-0 hover:opacity-90"
+              className="w-full shrink-0 rounded-xl border-0 gradient-cta px-8 text-primary-foreground hover:opacity-90 sm:w-auto"
             >
               <Send className="w-4 h-4 mr-2" /> {submitting ? "Sending..." : "Send"}
             </Button>

@@ -1,4 +1,4 @@
-import { Product } from "@/data/products";
+import { Product, products as localProducts } from "@/data/products";
 
 export const API_BASE_URL =
   import.meta.env.VITE_API_URL || "http://localhost:5000";
@@ -71,13 +71,24 @@ export function normalizeProduct(row: Record<string, unknown>): Product {
 }
 
 export async function fetchProducts(): Promise<Product[]> {
-  const res = await fetch(`${API_BASE_URL}/products`);
-  if (!res.ok) {
-    throw new Error(`Failed to fetch products (${res.status})`);
+  try {
+    const res = await fetch(`${API_BASE_URL}/products`);
+    if (!res.ok) {
+      throw new Error(`Failed to fetch products (${res.status})`);
+    }
+    const data = await res.json();
+    const list = Array.isArray(data) ? data : [];
+    const normalized = list.map((row) => normalizeProduct(row as Record<string, unknown>));
+    const tripodStick = localProducts.find((product) => product.id === "tripod-walking-stick");
+
+    if (tripodStick && !normalized.some((product) => product.id === tripodStick.id)) {
+      normalized.push(tripodStick);
+    }
+
+    return normalized;
+  } catch {
+    return localProducts;
   }
-  const data = await res.json();
-  const list = Array.isArray(data) ? data : [];
-  return list.map((row) => normalizeProduct(row as Record<string, unknown>));
 }
 
 export async function createProduct(payload: {

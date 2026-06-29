@@ -30,7 +30,7 @@ const Contact = () => {
               <aside className="overflow-hidden rounded-lg bg-[#315f9d] text-white shadow-lg shadow-[#315f9d]/20">
                 <div className="p-6 md:p-8">
                   <p className="text-sm font-semibold uppercase tracking-wide text-white/70">Sahyadri Surgical</p>
-                  <h2 className="mt-3 font-display text-3xl font-extrabold leading-tight">Medical Equipment Support Desk</h2>
+                  <h2 className="mt-3 font-display text-2xl font-extrabold leading-tight sm:text-3xl">Medical Equipment Support Desk</h2>
                   <p className="mt-4 text-sm leading-7 text-white/85">
                     Contact us for hospital beds, wheelchairs, oxygen equipment, patient care products, and home
                     healthcare equipment support.
@@ -63,14 +63,14 @@ const Contact = () => {
                       href={item.href}
                       target={item.href.startsWith("http") ? "_blank" : undefined}
                       rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="flex items-center gap-4 border-white/15 p-5 transition-colors hover:bg-white/10 sm:border-r lg:border-b lg:border-r-0"
+                      className="flex min-w-0 items-center gap-4 border-white/15 p-5 transition-colors hover:bg-white/10 sm:border-r lg:border-b lg:border-r-0"
                     >
                       <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-white/15">
                         <item.icon className="h-5 w-5" />
                       </span>
-                      <span>
+                      <span className="min-w-0">
                         <span className="block text-xs font-semibold uppercase tracking-wide text-white/65">{item.label}</span>
-                        <span className="mt-1 block text-sm font-bold">{item.value}</span>
+                        <span className="mt-1 block break-words text-sm font-bold">{item.value}</span>
                       </span>
                     </a>
                   ))}
@@ -89,7 +89,7 @@ const Contact = () => {
                   </div>
                   <a
                     href={`mailto:${email}`}
-                    className="mt-4 inline-flex items-center gap-2 rounded-md bg-white px-4 py-2.5 text-sm font-bold text-[#315f9d] transition-opacity hover:opacity-90"
+                    className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-md bg-white px-4 py-2.5 text-sm font-bold text-[#315f9d] transition-opacity hover:opacity-90 sm:w-auto"
                   >
                     <Wrench className="h-4 w-4" />
                     Escalate an Issue
@@ -121,7 +121,7 @@ const Contact = () => {
                 </section>
 
                 <section className="overflow-hidden rounded-lg border border-[#d9dde5] bg-white shadow-sm">
-                  <div className="flex items-center justify-between border-b border-[#d9dde5] px-6 py-4">
+                  <div className="flex items-center justify-between gap-4 border-b border-[#d9dde5] px-4 py-4 sm:px-6">
                     <div>
                       <h2 className="font-display text-xl font-bold text-[#111827]">Find Us on Map</h2>
                       <p className="mt-1 text-sm text-[#666]">Pune, Maharashtra</p>

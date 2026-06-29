@@ -11,38 +11,31 @@ const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link
       to={`/product/${product.id}`}
-      className="group bg-card rounded-2xl card-shadow hover:card-shadow-hover transition-all duration-300 hover:-translate-y-1 overflow-hidden flex flex-col"
+      className="group flex min-w-0 flex-col overflow-hidden rounded-2xl bg-card card-shadow transition-all duration-300 hover:-translate-y-1 hover:card-shadow-hover"
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-secondary">
         <img
           src={product.image}
           alt={product.name}
           loading="lazy"
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         {product.available && (
-          <Badge className="absolute top-3 left-3 bg-trust text-primary-foreground border-0 text-xs">
+          <Badge className="absolute left-3 top-3 border-0 bg-trust text-xs text-primary-foreground">
             Available
           </Badge>
         )}
       </div>
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-display font-semibold text-foreground text-sm mb-2 line-clamp-2">
+      <div className="flex flex-1 flex-col p-3 sm:p-4">
+        <h3 className="mb-2 line-clamp-2 font-display text-sm font-semibold text-foreground">
           {product.name}
         </h3>
-        <div className="mt-auto space-y-2">
-          <div className="flex items-baseline gap-2">
-            <span className="text-lg font-bold text-primary">₹{product.rentPrice.toLocaleString()}</span>
-            <span className="text-xs text-muted-foreground">/ {product.rentUnit}</span>
-          </div>
-          <div className="text-xs text-muted-foreground">
-            Buy: ₹{product.buyPrice.toLocaleString()}
-          </div>
-          <div className="flex gap-2 pt-1">
-            <Button size="sm" className="flex-1 gradient-cta text-primary-foreground border-0 text-xs rounded-lg hover:opacity-90">
+        <div className="mt-auto">
+          <div className="grid grid-cols-1 gap-2 pt-1 min-[380px]:grid-cols-2">
+            <Button size="sm" className="w-full rounded-lg border-0 gradient-cta text-xs text-primary-foreground hover:opacity-90">
               Rent Now
             </Button>
-            <Button size="sm" variant="outline" className="flex-1 text-xs rounded-lg border-primary text-primary hover:bg-secondary">
+            <Button size="sm" variant="outline" className="w-full rounded-lg border-primary text-xs text-primary hover:bg-secondary">
               Buy
             </Button>
           </div>
