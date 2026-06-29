@@ -22,18 +22,43 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 border-b border-[#e3e8ef] bg-white header-shadow">
-      <div className="section-container">
-        <div className="flex h-14 items-center md:h-[60px]">
+      <div className="section-container px-0 sm:px-6 lg:px-8">
+        <div className="flex h-12 items-stretch md:h-[60px]">
+          <button
+            className="flex w-12 shrink-0 items-center justify-center border-r border-[#e3e8ef] hover:bg-secondary lg:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+
           {/* Logo */}
-          <Link to="/" className="flex shrink-0 items-center gap-2 pr-4 sm:pr-6 md:border-r md:border-[#e3e8ef]">
-            <div className="h-9 w-9 rounded-xl gradient-hero flex items-center justify-center">
+          <Link to="/" className="flex min-w-0 flex-1 shrink items-center gap-2 px-2 sm:flex-none sm:px-0 sm:pr-6 md:border-r md:border-[#e3e8ef]">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg gradient-hero sm:h-9 sm:w-9 sm:rounded-xl">
               <span className="text-primary-foreground font-display font-bold text-base">S</span>
             </div>
-            <div className="hidden sm:block">
-              <h1 className="font-display font-bold text-base leading-tight text-[#2d5ea9]">Sahyadri</h1>
-              <p className="text-xs text-[#7a8599] -mt-0.5">Surgicals</p>
+            <div className="min-w-0">
+              <h1 className="truncate font-display text-sm font-bold leading-tight text-[#2d5ea9] sm:text-base">Sahyadri</h1>
+              <p className="-mt-0.5 truncate text-[10px] text-[#7a8599] sm:text-xs">Surgicals</p>
             </div>
           </Link>
+
+          <nav className="flex h-full shrink-0 items-stretch border-l border-[#e3e8ef] lg:hidden">
+            <Link
+              to="/products?mode=rent"
+              className="flex w-[60px] items-center justify-center border-r border-[#e3e8ef] bg-[#d7e4f5] text-xs font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#cdddf2]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              RENT
+            </Link>
+            <Link
+              to="/products?mode=buy"
+              className="flex w-[60px] items-center justify-center border-r border-[#e3e8ef] text-xs font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#f4f7fb]"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              BUY
+            </Link>
+          </nav>
 
           {/* Search Bar */}
           <form onSubmit={handleSearch} className="hidden md:flex flex-1 items-center px-4 lg:px-6">
@@ -89,13 +114,6 @@ const Header = () => {
               <span>WhatsApp</span>
             </a>
           </div>
-
-          <button
-            className="ml-auto rounded-lg p-2 hover:bg-secondary lg:hidden"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
         </div>
       </div>
 
