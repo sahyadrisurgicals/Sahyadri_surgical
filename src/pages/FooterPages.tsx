@@ -1,3 +1,4 @@
+import { useState, type FormEvent } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
@@ -14,6 +15,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { submitVendor } from "@/lib/api";
 import {
   CheckCircle,
   Database,
@@ -93,170 +97,339 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => (
   </div>
 );
 
-export const VendorRegistration = () => (
-  <div className="min-h-screen bg-[#eff1f4] pb-16 md:pb-0">
-    <Header />
-    <section className="bg-[#305c9d] py-7 text-center shadow-sm">
-      <div className="section-container">
-        <h1 className="font-display text-2xl font-bold text-white md:text-3xl">Vendor Registration</h1>
-        <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-white/85">
-          Register your business with us for medical equipment supply, product servicing, and healthcare support.
-        </p>
-      </div>
-    </section>
-    <main className="py-8 md:py-10">
-      <div className="section-container">
-        <div className="mx-auto max-w-5xl overflow-hidden rounded-sm border border-[#d9dde5] bg-white shadow-sm">
-          <div className="bg-[#f7f8fb] px-5 py-4 text-center">
-            <h2 className="font-display text-xl font-bold text-[#305c9d]">Become a Vendor</h2>
-            <p className="mx-auto mt-1 max-w-3xl text-sm text-[#666]">
-              Fill in your company, address, account, and document details. Our team will review the information and
-              contact you for the next onboarding step.
-            </p>
-          </div>
-          <form
-            className="divide-y divide-[#d9dde5]"
-            onSubmit={(event) => event.preventDefault()}
-          >
-            <section>
-              <SectionTitle>Vendor Information</SectionTitle>
-              <div className="grid gap-4 p-5 md:grid-cols-2">
-                <Field label="Business Name *">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="Contact Person *">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="Contact Number *">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" type="tel" />
-                </Field>
-                <Field label="Email Address">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" type="email" />
-                </Field>
-                <Field label="GSTIN No. *">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="PAN No.">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="Vendor Tag">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" placeholder="Manufacturer / Dealer / Service Partner" />
-                </Field>
-                <Field label="Product Category">
-                  <Select>
-                    <SelectTrigger className="h-10 rounded-sm border-[#cfd4dc]">
-                      <SelectValue placeholder="Select category" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="medical-equipment">Medical Equipment</SelectItem>
-                      <SelectItem value="mobility-aids">Mobility Aids</SelectItem>
-                      <SelectItem value="respiratory">Respiratory Support</SelectItem>
-                      <SelectItem value="service">Service & Maintenance</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </Field>
-              </div>
-            </section>
+export const VendorRegistration = () => {
+  const [form, setForm] = useState({
+    businessName: "",
+    contactPerson: "",
+    contactNumber: "",
+    email: "",
+    gstin: "",
+    pan: "",
+    vendorTag: "",
+    productCategory: "",
+    address1: "",
+    address2: "",
+    state: "",
+    city: "",
+    pincode: "",
+    warehouse: "",
+    bankName: "",
+    accountHolderName: "",
+    accountNumber: "",
+    ifsc: "",
+    remarks: "",
+  });
+  const [submitting, setSubmitting] = useState(false);
 
-            <section>
-              <SectionTitle>Registered Address</SectionTitle>
-              <div className="grid gap-4 p-5 md:grid-cols-2">
-                <Field label="Address Line 1 *" className="md:col-span-2">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="Address Line 2" className="md:col-span-2">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="State *">
-                  <Select>
-                    <SelectTrigger className="h-10 rounded-sm border-[#cfd4dc]">
-                      <SelectValue placeholder="Select state" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="maharashtra">Maharashtra</SelectItem>
-                      <SelectItem value="delhi">Delhi</SelectItem>
-                      <SelectItem value="karnataka">Karnataka</SelectItem>
-                      <SelectItem value="gujarat">Gujarat</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </Field>
-                <Field label="City *">
-                  <Select>
-                    <SelectTrigger className="h-10 rounded-sm border-[#cfd4dc]">
-                      <SelectValue placeholder="Select city" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="mumbai">Mumbai</SelectItem>
-                      <SelectItem value="pune">Pune</SelectItem>
-                      <SelectItem value="thane">Thane</SelectItem>
-                      <SelectItem value="delhi">Delhi</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </Field>
-                <Field label="Pincode *">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="Warehouse / Service Area">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-              </div>
-            </section>
+  const resetForm = () => {
+    setForm({
+      businessName: "",
+      contactPerson: "",
+      contactNumber: "",
+      email: "",
+      gstin: "",
+      pan: "",
+      vendorTag: "",
+      productCategory: "",
+      address1: "",
+      address2: "",
+      state: "",
+      city: "",
+      pincode: "",
+      warehouse: "",
+      bankName: "",
+      accountHolderName: "",
+      accountNumber: "",
+      ifsc: "",
+      remarks: "",
+    });
+  };
 
-            <section>
-              <SectionTitle>Account Information</SectionTitle>
-              <div className="grid gap-4 p-5 md:grid-cols-2">
-                <Field label="Bank Name">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="Account Holder Name">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="Account Number">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-                <Field label="IFSC Code">
-                  <Input className="h-10 rounded-sm border-[#cfd4dc]" />
-                </Field>
-              </div>
-            </section>
+  const handleSubmit = async (event: FormEvent) => {
+    event.preventDefault();
+    if (!form.businessName.trim() || !form.contactPerson.trim() || !form.contactNumber.trim()) {
+      toast.error("Please fill in the required vendor details");
+      return;
+    }
 
-            <section>
-              <SectionTitle>Documents & Notes</SectionTitle>
-              <div className="grid gap-5 p-5 md:grid-cols-[1fr_1.2fr]">
-                <div>
-                  <Label className="mb-3 block text-sm font-semibold text-[#4f4f4f]">Available Documents</Label>
-                  <div className="space-y-3 rounded-sm border border-[#d9dde5] bg-[#fafafa] p-4">
-                    {["Vendor Agreement", "Shop Est. Cert.", "Aadhar Card", "GST Certificate"].map((document) => (
-                      <label key={document} className="flex items-center gap-3 text-sm text-[#555]">
-                        <Checkbox className="border-[#305c9d] data-[state=checked]:bg-[#305c9d]" />
-                        <span>{document}</span>
-                      </label>
-                    ))}
-                  </div>
-                </div>
-                <Field label="Remarks / Product Details">
-                  <Textarea className="min-h-[130px] rounded-sm border-[#cfd4dc]" />
-                </Field>
-              </div>
-            </section>
+    setSubmitting(true);
+    try {
+      const address = [form.address1, form.address2, form.city, form.state, form.pincode, form.warehouse]
+        .map((item) => item.trim())
+        .filter(Boolean)
+        .join(", ");
+      const notes = [
+        form.vendorTag ? `Vendor Tag: ${form.vendorTag}` : "",
+        form.pan ? `PAN: ${form.pan}` : "",
+        form.bankName ? `Bank: ${form.bankName}` : "",
+        form.accountHolderName ? `Account Holder: ${form.accountHolderName}` : "",
+        form.accountNumber ? `Account Number: ${form.accountNumber}` : "",
+        form.ifsc ? `IFSC: ${form.ifsc}` : "",
+        form.remarks ? `Notes: ${form.remarks}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n");
 
-            <div className="flex flex-col-reverse gap-3 bg-[#f7f8fb] px-5 py-4 sm:flex-row sm:justify-end">
-              <Button type="button" variant="outline" className="rounded-sm border-[#cfd4dc] text-[#555]">
-                Cancel
-              </Button>
-              <Button type="submit" className="rounded-sm bg-[#305c9d] px-8 text-white hover:bg-[#264d86]">
-                Submit
-              </Button>
-            </div>
-          </form>
+      await submitVendor({
+        vendor_name: form.contactPerson.trim(),
+        business_name: form.businessName.trim(),
+        phone: form.contactNumber.trim(),
+        email: form.email.trim(),
+        address,
+        category: form.productCategory.trim(),
+        gst_number: form.gstin.trim(),
+        admin_notes: notes,
+      });
+      toast.success("Vendor registration submitted");
+      resetForm();
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to submit vendor registration");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#eff1f4] pb-16 md:pb-0">
+      <Header />
+      <section className="bg-[#305c9d] py-7 text-center shadow-sm">
+        <div className="section-container">
+          <h1 className="font-display text-2xl font-bold text-white md:text-3xl">Vendor Registration</h1>
+          <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-white/85">
+            Register your business with us for medical equipment supply, product servicing, and healthcare support.
+          </p>
         </div>
-      </div>
-    </main>
-    <Footer />
-    <WhatsAppButton />
-    <MobileBottomBar />
-  </div>
-);
+      </section>
+      <main className="py-8 md:py-10">
+        <div className="section-container">
+          <div className="mx-auto max-w-5xl overflow-hidden rounded-sm border border-[#d9dde5] bg-white shadow-sm">
+            <div className="bg-[#f7f8fb] px-5 py-4 text-center">
+              <h2 className="font-display text-xl font-bold text-[#305c9d]">Become a Vendor</h2>
+              <p className="mx-auto mt-1 max-w-3xl text-sm text-[#666]">
+                Fill in your company, address, account, and document details. Our team will review the information and
+                contact you for the next onboarding step.
+              </p>
+            </div>
+            <form className="divide-y divide-[#d9dde5]" onSubmit={handleSubmit}>
+              <section>
+                <SectionTitle>Vendor Information</SectionTitle>
+                <div className="grid gap-4 p-5 md:grid-cols-2">
+                  <Field label="Business Name *">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.businessName}
+                      onChange={(event) => setForm((prev) => ({ ...prev, businessName: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Contact Person *">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.contactPerson}
+                      onChange={(event) => setForm((prev) => ({ ...prev, contactPerson: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Contact Number *">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      type="tel"
+                      value={form.contactNumber}
+                      onChange={(event) => setForm((prev) => ({ ...prev, contactNumber: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Email Address">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      type="email"
+                      value={form.email}
+                      onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="GSTIN No. *">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.gstin}
+                      onChange={(event) => setForm((prev) => ({ ...prev, gstin: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="PAN No.">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.pan}
+                      onChange={(event) => setForm((prev) => ({ ...prev, pan: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Vendor Tag">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      placeholder="Manufacturer / Dealer / Service Partner"
+                      value={form.vendorTag}
+                      onChange={(event) => setForm((prev) => ({ ...prev, vendorTag: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Product Category">
+                    <Select value={form.productCategory} onValueChange={(value) => setForm((prev) => ({ ...prev, productCategory: value }))}>
+                      <SelectTrigger className="h-10 rounded-sm border-[#cfd4dc]">
+                        <SelectValue placeholder="Select category" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="medical-equipment">Medical Equipment</SelectItem>
+                        <SelectItem value="mobility-aids">Mobility Aids</SelectItem>
+                        <SelectItem value="respiratory">Respiratory Support</SelectItem>
+                        <SelectItem value="service">Service & Maintenance</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                </div>
+              </section>
+
+              <section>
+                <SectionTitle>Registered Address</SectionTitle>
+                <div className="grid gap-4 p-5 md:grid-cols-2">
+                  <Field label="Address Line 1 *" className="md:col-span-2">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.address1}
+                      onChange={(event) => setForm((prev) => ({ ...prev, address1: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Address Line 2" className="md:col-span-2">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.address2}
+                      onChange={(event) => setForm((prev) => ({ ...prev, address2: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="State *">
+                    <Select value={form.state} onValueChange={(value) => setForm((prev) => ({ ...prev, state: value }))}>
+                      <SelectTrigger className="h-10 rounded-sm border-[#cfd4dc]">
+                        <SelectValue placeholder="Select state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="maharashtra">Maharashtra</SelectItem>
+                        <SelectItem value="delhi">Delhi</SelectItem>
+                        <SelectItem value="karnataka">Karnataka</SelectItem>
+                        <SelectItem value="gujarat">Gujarat</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                  <Field label="City *">
+                    <Select value={form.city} onValueChange={(value) => setForm((prev) => ({ ...prev, city: value }))}>
+                      <SelectTrigger className="h-10 rounded-sm border-[#cfd4dc]">
+                        <SelectValue placeholder="Select city" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="mumbai">Mumbai</SelectItem>
+                        <SelectItem value="pune">Pune</SelectItem>
+                        <SelectItem value="thane">Thane</SelectItem>
+                        <SelectItem value="delhi">Delhi</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </Field>
+                  <Field label="Pincode *">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.pincode}
+                      onChange={(event) => setForm((prev) => ({ ...prev, pincode: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Warehouse / Service Area">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.warehouse}
+                      onChange={(event) => setForm((prev) => ({ ...prev, warehouse: event.target.value }))}
+                    />
+                  </Field>
+                </div>
+              </section>
+
+              <section>
+                <SectionTitle>Account Information</SectionTitle>
+                <div className="grid gap-4 p-5 md:grid-cols-2">
+                  <Field label="Bank Name">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.bankName}
+                      onChange={(event) => setForm((prev) => ({ ...prev, bankName: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Account Holder Name">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.accountHolderName}
+                      onChange={(event) => setForm((prev) => ({ ...prev, accountHolderName: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="Account Number">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.accountNumber}
+                      onChange={(event) => setForm((prev) => ({ ...prev, accountNumber: event.target.value }))}
+                    />
+                  </Field>
+                  <Field label="IFSC Code">
+                    <Input
+                      className="h-10 rounded-sm border-[#cfd4dc]"
+                      value={form.ifsc}
+                      onChange={(event) => setForm((prev) => ({ ...prev, ifsc: event.target.value }))}
+                    />
+                  </Field>
+                </div>
+              </section>
+
+              <section>
+                <SectionTitle>Documents & Notes</SectionTitle>
+                <div className="grid gap-5 p-5 md:grid-cols-[1fr_1.2fr]">
+                  <div>
+                    <Label className="mb-3 block text-sm font-semibold text-[#4f4f4f]">Available Documents</Label>
+                    <div className="space-y-3 rounded-sm border border-[#d9dde5] bg-[#fafafa] p-4">
+                      {["Vendor Agreement", "Shop Est. Cert.", "Aadhar Card", "GST Certificate"].map((document) => (
+                        <label key={document} className="flex items-center gap-3 text-sm text-[#555]">
+                          <Checkbox className="border-[#305c9d] data-[state=checked]:bg-[#305c9d]" />
+                          <span>{document}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                  <Field label="Remarks / Product Details">
+                    <Textarea
+                      className="min-h-[130px] rounded-sm border-[#cfd4dc]"
+                      value={form.remarks}
+                      onChange={(event) => setForm((prev) => ({ ...prev, remarks: event.target.value }))}
+                    />
+                  </Field>
+                </div>
+              </section>
+
+              <div className="flex flex-col-reverse gap-3 bg-[#f7f8fb] px-5 py-4 sm:flex-row sm:justify-end">
+                <Button
+                  type="button"
+                  variant="outline"
+                  className="rounded-sm border-[#cfd4dc] text-[#555]"
+                  onClick={resetForm}
+                >
+                  Cancel
+                </Button>
+                <Button type="submit" className="rounded-sm bg-[#305c9d] px-8 text-white hover:bg-[#264d86]" disabled={submitting}>
+                  {submitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Submitting...
+                    </>
+                  ) : (
+                    "Submit"
+                  )}
+                </Button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+      <Footer />
+      <WhatsAppButton />
+      <MobileBottomBar />
+    </div>
+  );
+};
 
 export const ServicePolicy = () => (
   <div className="min-h-screen bg-[#eff1f4] pb-16 md:pb-0">

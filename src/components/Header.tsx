@@ -1,16 +1,26 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Search, Phone, Menu, X } from "lucide-react";
+import { useContactSettings, useSiteSettings } from "@/hooks/useContent";
 
-const callNumber = "+919876543210";
-const whatsappNumber = "919876543210";
-const whatsappMessage = "Hi, I want to inquire about medical equipment";
+function stripDigits(value: string) {
+  return value.replace(/\D/g, "");
+}
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
+  const { data: contactSettings } = useContactSettings();
+  const { data: siteSettings } = useSiteSettings();
+  const callNumber = contactSettings?.phone || String(siteSettings.call_number || "+919876543210");
+  const whatsappNumber = stripDigits(contactSettings?.whatsapp || String(siteSettings.whatsapp_number || "919876543210"));
+  const whatsappMessage =
+    String(siteSettings.whatsapp_message || "Hi, I want to inquire about medical equipment");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+  const siteName = String(siteSettings.site_name || "Sahyadri Surgical");
+  const [primaryName, secondaryName = ""] = siteName.split(" ");
+  const logoText = String(siteSettings.logo_text || "SS");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,11 +45,13 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex min-w-0 flex-1 shrink items-center gap-2 px-2 sm:flex-none sm:px-0 sm:pr-6 md:border-r md:border-[#e3e8ef]">
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg gradient-hero sm:h-9 sm:w-9 sm:rounded-xl">
-              <span className="text-primary-foreground font-display font-bold text-base">S</span>
+              <span className="text-primary-foreground font-display font-bold text-base">{logoText}</span>
             </div>
             <div className="min-w-0">
-              <h1 className="truncate font-display text-sm font-bold leading-tight text-[#2d5ea9] sm:text-base">Sahyadri</h1>
-              <p className="-mt-0.5 truncate text-[10px] text-[#7a8599] sm:text-xs">Surgicals</p>
+              <h1 className="truncate font-display text-sm font-bold leading-tight text-[#2d5ea9] sm:text-base">
+                {primaryName}
+              </h1>
+              <p className="-mt-0.5 truncate text-[10px] text-[#7a8599] sm:text-xs">{secondaryName || "Surgical"}</p>
             </div>
           </Link>
 
@@ -103,7 +115,7 @@ const Header = () => {
               className="flex items-center gap-2 rounded-full bg-[#2f5ca6] px-4 py-1.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
             >
               <Phone className="h-4 w-4" />
-              <span>98765 43210</span>
+              <span>{callNumber.replace("+91", "").trim()}</span>
             </a>
             <a
               href={whatsappUrl}
@@ -155,7 +167,7 @@ const Header = () => {
                 href={`tel:${callNumber}`}
                 className="rounded-xl bg-[#2f5ca6] px-4 py-2 text-sm font-medium text-white"
               >
-                Call: 98765 43210
+                Call: {callNumber.replace("+91", "").trim()}
               </a>
               <a
                 href={whatsappUrl}

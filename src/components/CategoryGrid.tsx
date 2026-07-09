@@ -20,49 +20,55 @@ import {
   Truck,
   Users,
 } from "lucide-react";
+import { useCategories } from "@/hooks/useContent";
 
 type CategoryTile = {
   name: string;
-  query: string;
-  icon: ComponentType<{ className?: string }>;
+  slug?: string;
+  icon?: ComponentType<{ className?: string }> | string;
 };
 
-const categoryTiles: CategoryTile[] = [
-  { name: "Walking Stick", query: "Walking Stick", icon: Accessibility },
-  { name: "Walker", query: "Walker", icon: Accessibility },
-  { name: "Crutches", query: "Crutches", icon: Accessibility },
-  { name: "Wheelchair", query: "Wheelchair", icon: Accessibility },
-  { name: "Commode Chair", query: "Commode Chair", icon: Home },
-  { name: "Commode Stool", query: "Commode Stool", icon: Home },
-  { name: "Hospital Bed", query: "Hospital Bed", icon: BedDouble },
-  { name: "Mattress", query: "Mattress", icon: BedDouble },
-  { name: "Food Table", query: "Food Table", icon: Package },
-  { name: "IV Stand", query: "IV Stand", icon: Send },
-  { name: "Bedside Locker", query: "Bedside Locker", icon: Package },
-  { name: "Patient Monitor", query: "Patient Monitor", icon: HeartPulse },
-  { name: "Oxygen Concentrator", query: "Oxygen Concentrator", icon: HeartPulse },
-  { name: "Oxygen Cylinder", query: "Oxygen Cylinder", icon: Truck },
-  { name: "Bipap", query: "Bipap", icon: Filter },
-  { name: "CPAP", query: "CPAP", icon: Filter },
-  { name: "Ventilator", query: "Ventilator", icon: ShieldCheck },
-  { name: "Suction Machine", query: "Suction Machine", icon: Search },
-  { name: "DVT Pump", query: "DVT Pump", icon: Clock3 },
-  { name: "Syringe Pump", query: "Syringe Pump", icon: Send },
-  { name: "Feeding Pump", query: "Feeding Pump", icon: Send },
-  { name: "Infusion Pump", query: "Infusion Pump", icon: Send },
-  { name: "ECG 12 channel", query: "ECG", icon: Heart },
-  { name: "HFNC", query: "HFNC", icon: HeartPulse },
-  { name: "Home ICU Setup", query: "Home ICU Setup", icon: Home },
-  { name: "Hospital Furniture", query: "Hospital Furniture", icon: Grid3X3 },
-  { name: "Sleep Study", query: "Sleep Study", icon: Eye },
-  { name: "Hearing Aids", query: "Hearing Aids", icon: Phone },
-  { name: "Caretaker", query: "Caretaker", icon: Users },
-  { name: "Nursing", query: "Nursing", icon: ShieldCheck },
-  { name: "Accessories", query: "Accessories", icon: ShoppingCart },
-  { name: "Medical Devices & Equipment", query: "Medical Devices Equipment", icon: Package },
+const iconMap: Record<string, ComponentType<{ className?: string }>> = {
+  accessibility: Accessibility,
+  home: Home,
+  "bed-double": BedDouble,
+  package: Package,
+  "heart-pulse": HeartPulse,
+  truck: Truck,
+  filter: Filter,
+  "shield-check": ShieldCheck,
+  search: Search,
+  "clock-3": Clock3,
+  send: Send,
+  heart: Heart,
+  "grid-3x3": Grid3X3,
+  eye: Eye,
+  phone: Phone,
+  users: Users,
+};
+
+function resolveIcon(key?: string) {
+  return iconMap[key || ""] || null;
+}
+
+const fallbackCategories: CategoryTile[] = [
+  { name: "Walking Stick", slug: "walkers", icon: Accessibility },
+  { name: "Wheelchair", slug: "wheelchairs", icon: Accessibility },
+  { name: "Hospital Bed", slug: "hospital-beds", icon: BedDouble },
+  { name: "Oxygen Equipment", slug: "oxygen-equipment", icon: HeartPulse },
+  { name: "Commode Chair", slug: "commode-chairs", icon: Home },
+  { name: "Patient Monitor", slug: "patient-monitors", icon: HeartPulse },
+  { name: "Accessories", slug: "accessories", icon: ShoppingCart },
 ];
 
 const CategoryGrid = () => {
+  const { data: apiCategories } = useCategories();
+  const categoryTiles = (apiCategories.length ? apiCategories : fallbackCategories).map((category: any) => ({
+    name: String(category.name || "Category"),
+    slug: String(category.slug || category.id || ""),
+    icon: resolveIcon(category.icon) || category.icon || Accessibility,
+  }));
+
   return (
     <section className="bg-[#eef2f7] py-8 md:py-10">
       <div className="section-container">
@@ -85,11 +91,15 @@ const CategoryGrid = () => {
               transition={{ delay: i * 0.02, duration: 0.35 }}
             >
               <Link
-                to={`/products?search=${encodeURIComponent(cat.query)}`}
+                to={`/products?category=${encodeURIComponent(cat.slug || cat.name.toLowerCase().replace(/\s+/g, "-"))}`}
                 className="group flex min-h-[112px] flex-col items-center justify-center rounded-lg border border-[#dde2ec] bg-white px-2 py-3 text-center shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md sm:min-h-[126px]"
               >
                 <div className="mb-2 rounded-full bg-[#edf2fb] p-2.5 text-[#305da2] transition-transform duration-200 group-hover:scale-105">
-                  <cat.icon className="h-5 w-5" />
+                  {typeof cat.icon === "string" ? (
+                    <span className="text-xs font-semibold">{cat.icon}</span>
+                  ) : (
+                    <cat.icon className="h-5 w-5" />
+                  )}
                 </div>
                 <span className="break-words text-[12px] font-medium leading-tight text-[#214f93] sm:text-[13px]">
                   {cat.name}

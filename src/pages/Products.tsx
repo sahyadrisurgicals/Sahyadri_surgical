@@ -1,14 +1,34 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ComponentType } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import MobileBottomBar from "@/components/MobileBottomBar";
 import ProductCard from "@/components/ProductCard";
-import { categories } from "@/data/products";
 import { Button } from "@/components/ui/button";
-import { Filter, X } from "lucide-react";
+import {
+  Filter,
+  X,
+  Accessibility,
+  BedDouble,
+  HeartPulse,
+  Home,
+  Package,
+  Truck,
+  ShieldCheck,
+} from "lucide-react";
 import { useProducts } from "@/hooks/useProducts";
+import { useCategories } from "@/hooks/useContent";
+
+const iconMap: Record<string, ComponentType<{ className?: string }>> = {
+  accessibility: Accessibility,
+  "bed-double": BedDouble,
+  "heart-pulse": HeartPulse,
+  home: Home,
+  package: Package,
+  truck: Truck,
+  "shield-check": ShieldCheck,
+};
 
 const Products = () => {
   const [searchParams] = useSearchParams();
@@ -17,6 +37,7 @@ const Products = () => {
   const [showFilters, setShowFilters] = useState(false);
   const searchQuery = searchParams.get("search") || "";
   const { products, loading, error } = useProducts();
+  const { data: categories } = useCategories();
 
   const filtered = useMemo(() => {
     let result = products;
@@ -79,15 +100,18 @@ const Products = () => {
                 >
                   All Categories
                 </button>
-                {categories.map((cat) => (
+                {categories.map((cat: any) => {
+                  const Icon = iconMap[String(cat.icon || "")];
+                  return (
                   <button
-                    key={cat.id}
-                    className={`block w-full text-left px-3 py-2 rounded-lg text-sm ${selectedCategory === cat.id ? "bg-primary text-primary-foreground" : "hover:bg-secondary text-foreground"}`}
-                    onClick={() => { setSelectedCategory(cat.id); setShowFilters(false); }}
+                    key={cat.slug || cat.id}
+                    className={`block w-full text-left px-3 py-2 rounded-lg text-sm ${selectedCategory === String(cat.slug || cat.id) ? "bg-primary text-primary-foreground" : "hover:bg-secondary text-foreground"}`}
+                    onClick={() => { setSelectedCategory(String(cat.slug || cat.id)); setShowFilters(false); }}
                   >
-                    {cat.icon} {cat.name}
+                    {Icon ? <Icon className="mr-2 inline-block h-4 w-4" /> : <span className="mr-2 inline-block">{String(cat.icon || "")}</span>}
+                    {cat.name}
                   </button>
-                ))}
+                );})}
               </div>
             </div>
           </aside>

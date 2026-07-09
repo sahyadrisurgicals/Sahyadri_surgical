@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useSiteSettings } from "@/hooks/useContent";
 
 const footerColumns = [
   {
@@ -25,6 +26,11 @@ const footerColumns = [
 ];
 
 const Footer = () => {
+  const { data: siteSettings } = useSiteSettings();
+  const footerCredit = String(siteSettings.footer_credit || "Designed by");
+  const footerCopyright = String(siteSettings.footer_copyright || "2026 Sahyadri Surgical. All Rights Reserved.");
+  const footerPrefix = footerCredit.replace(/webakoof/i, "").trim() || "Designed by";
+
   return (
     <footer className="bg-white text-[#2f5f9d]">
       <div className="bg-[#315f9d] px-4 py-6 text-white sm:px-6 md:px-12">
@@ -48,7 +54,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="bg-white py-2 text-center text-xs text-[#2f5f9d] md:text-sm">
-        &copy; 2026 Sahyadri Surgical. All Rights Reserved. Designed by{" "}
+        &copy; {footerCopyright} {footerPrefix}{" "}
         <a
           href="https://webakoof.com"
           target="_blank"

@@ -1,6 +1,16 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Product } from "@/data/products";
-import { createProduct, deleteProduct as apiDeleteProduct, fetchProducts, updateProduct as apiUpdateProduct } from "@/lib/api";
+import {
+  createProduct,
+  deleteEnquiry,
+  deleteProduct as apiDeleteProduct,
+  fetchEnquiries,
+  fetchProducts,
+  submitEnquiry,
+  updateEnquiry,
+  updateProduct as apiUpdateProduct,
+  type EnquiryRecord,
+} from "@/lib/api";
 
 export interface Inquiry {
   id: string;
@@ -12,98 +22,131 @@ export interface Inquiry {
   status: "pending" | "contacted" | "resolved";
 }
 
-const INQUIRIES_KEY = "sahyadri_inquiries";
-function loadInquiries(): Inquiry[] {
-  try {
-    const stored = localStorage.getItem(INQUIRIES_KEY);
-    return stored ? JSON.parse(stored) : [];
-  } catch { return []; }
-}
-
-function saveInquiries(inquiries: Inquiry[]) {
-  localStorage.setItem(INQUIRIES_KEY, JSON.stringify(inquiries));
-}
-
 export function useInquiries() {
-  const [inquiries, setInquiries] = useState<Inquiry[]>(loadInquiries);
+  const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => { saveInquiries(inquiries); }, [inquiries]);
-
-  const addInquiry = (inquiry: Omit<Inquiry, "id" | "date" | "status">) => {
-    const newInquiry: Inquiry = {
-      ...inquiry,
-      id: crypto.randomUUID(),
-      date: new Date().toISOString(),
-      status: "pending",
-    };
-    setInquiries(prev => [newInquiry, ...prev]);
+  const load = async () => {
+    setLoading(true);
+    try {
+      const response = await fetchEnquiries({ page: 1, limit: 500 });
+      const mapped = response.items.map((item: EnquiryRecord) => ({
+        id: String(item.id),
+        name: item.name,
+        phone: item.phone,
+        equipment: item.service_interested || "General enquiry",
+        message: item.message || "",
+        date: item.created_at,
+        status:
+          item.status === "contacted"
+            ? "contacted"
+            : item.status === "closed"
+              ? "resolved"
+              : "pending",
+      }));
+      setInquiries(mapped);
+    } catch {
+      setInquiries([]);
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const updateStatus = (id: string, status: Inquiry["status"]) => {
-    setInquiries(prev => prev.map(i => i.id === id ? { ...i, status } : i));
+  useEffect(() => {
+    void load();
+  }, []);
+
+  const addInquiry = async (inquiry: Omit<Inquiry, "id" | "date" | "status">) => {
+    await submitEnquiry({
+      name: inquiry.name,
+      phone: inquiry.phone,
+      message: inquiry.message || inquiry.equipment,
+      service_interested: inquiry.equipment,
+    });
+    await load();
   };
 
-  const deleteInquiry = (id: string) => {
-    setInquiries(prev => prev.filter(i => i.id !== id));
+  const updateStatus = async (id: string, status: Inquiry["status"]) => {
+    const apiStatus = status === "resolved" ? "closed" : status;
+    await updateEnquiry(id, { status: apiStatus });
+    setInquiries((prev) => prev.map((item) => (item.id === id ? { ...item, status } : item)));
   };
 
-  return { inquiries, addInquiry, updateStatus, deleteInquiry };
+  const deleteInquiry = async (id: string) => {
+    await deleteEnquiry(id);
+    setInquiries((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  return { inquiries, loading, addInquiry, updateStatus, deleteInquiry, refresh: load };
 }
 
 export function useAdminProducts() {
-  const [productList, setProductList] = useState<Product[]>([]);
+  const [productsList, setProductsList] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  const load = async () => {
+    setLoading(true);
+    try {
+      const data = await fetchProducts({ all: true, allowFallback: false });
+      setProductsList(data);
+    } catch {
+      setProductsList([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    let active = true;
-    const load = async () => {
-      try {
-        const data = await fetchProducts();
-        if (active) setProductList(data);
-      } catch {
-        if (active) setProductList([]);
-      }
-    };
-    load();
-    return () => {
-      active = false;
-    };
+    void load();
   }, []);
 
   const addProduct = async (product: Omit<Product, "id">) => {
-    const payload = {
+    await createProduct({
       name: product.name,
-      category_id: product.category,
+      slug: product.slug,
+      category: product.category,
       rent_price: product.rentPrice,
       buy_price: product.buyPrice,
+      rent_unit: product.rentUnit,
+      image: product.image,
       description: product.description,
-      image1: product.image,
-      is_active: product.available ? 1 : 0,
-    };
-    const result = await createProduct(payload);
-    const id = String(result.insertId ?? product.name);
-    setProductList(prev => [{ ...product, id }, ...prev]);
+      features: product.features,
+      specifications: product.specs,
+      benefits: product.benefits,
+      is_top_selling: product.topSelling,
+      display_order: product.displayOrder,
+      is_active: product.available,
+    });
+    await load();
   };
 
   const updateProduct = async (id: string, updates: Partial<Product>) => {
-    const current = productList.find(p => p.id === id);
-    if (!current) return;
-    const merged = { ...current, ...updates };
+    const current = productsList.find((item) => item.id === id);
+    const merged = current ? { ...current, ...updates } : updates;
     await apiUpdateProduct(id, {
       name: merged.name,
-      category_id: merged.category,
+      slug: merged.slug,
+      category: merged.category,
       rent_price: merged.rentPrice,
       buy_price: merged.buyPrice,
+      rent_unit: merged.rentUnit,
+      image: merged.image,
       description: merged.description,
-      image1: merged.image,
-      is_active: merged.available ? 1 : 0,
+      features: merged.features,
+      specifications: merged.specs,
+      benefits: merged.benefits,
+      is_top_selling: merged.topSelling,
+      display_order: merged.displayOrder,
+      is_active: merged.available,
     });
-    setProductList(prev => prev.map(p => (p.id === id ? merged : p)));
+    await load();
   };
 
   const deleteProduct = async (id: string) => {
     await apiDeleteProduct(id);
-    setProductList(prev => prev.filter(p => p.id !== id));
+    setProductsList((prev) => prev.filter((item) => item.id !== id));
   };
 
-  return { products: productList, addProduct, updateProduct, deleteProduct };
+  return { products: productsList, loading, addProduct, updateProduct, deleteProduct, refresh: load };
 }
+
