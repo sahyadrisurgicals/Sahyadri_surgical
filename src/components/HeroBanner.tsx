@@ -1,8 +1,23 @@
 import { useEffect, useState, type ComponentType } from "react";
 import { Link } from "react-router-dom";
-import { Accessibility, ArrowRight, BedDouble, HeartPulse, ShieldCheck, Truck } from "lucide-react";
+import {
+  Accessibility,
+  ArrowRight,
+  BedDouble,
+  ChartColumn,
+  HeartPulse,
+  Home,
+  Package,
+  PersonStanding,
+  ShieldCheck,
+  ShowerHead,
+  Syringe,
+  Truck,
+  Wind,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { useHomeContent } from "@/hooks/useContent";
 
 type BannerSlide = {
   id: number;
@@ -14,9 +29,10 @@ type BannerSlide = {
   ctaTo: string;
   icon: ComponentType<{ className?: string }>;
   tone: string;
+  backgroundImage?: string;
 };
 
-const slides: BannerSlide[] = [
+const fallbackSlides: BannerSlide[] = [
   {
     id: 1,
     badge: "Limited Time Combo Offers",
@@ -99,9 +115,65 @@ const slides: BannerSlide[] = [
   },
 ];
 
+const iconMap: Record<string, ComponentType<{ className?: string }>> = {
+  "bed-double": BedDouble,
+  accessibility: Accessibility,
+  "heart-pulse": HeartPulse,
+  truck: Truck,
+  "shield-check": ShieldCheck,
+  home: Home,
+  package: Package,
+  "chart-column": ChartColumn,
+  "person-standing": PersonStanding,
+  "shower-head": ShowerHead,
+  syringe: Syringe,
+  wind: Wind,
+};
+
+function resolveIcon(key?: string) {
+  return iconMap[key || ""] || BedDouble;
+}
+
+function readText(value: unknown, fallback: string) {
+  const text = value == null ? "" : String(value).trim();
+  return text || fallback;
+}
+
 const HeroBanner = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const { data: homeContent } = useHomeContent();
+
+  const visibleSlides = (homeContent?.heroSlides?.length ? homeContent.heroSlides : fallbackSlides).filter((slide: any) => {
+    const activeValue = slide?.is_active ?? slide?.isActive;
+    if (activeValue === undefined || activeValue === null) {
+      return true;
+    }
+
+    if (typeof activeValue === "boolean") {
+      return activeValue;
+    }
+
+    if (typeof activeValue === "number") {
+      return activeValue !== 0;
+    }
+
+    const normalized = String(activeValue).toLowerCase().trim();
+    return !["0", "false", "inactive", "off", "disabled"].includes(normalized);
+  });
+
+  const slides: BannerSlide[] = (visibleSlides.length ? visibleSlides : fallbackSlides).map((slide: any, index: number) => ({
+    id: Number(slide.id ?? index + 1),
+    badge: readText(slide.badge ?? slide.badge_text, fallbackSlides[index % fallbackSlides.length].badge),
+    title: readText(slide.title ?? slide.heading, fallbackSlides[index % fallbackSlides.length].title),
+    description: readText(slide.description ?? slide.subtitle, fallbackSlides[index % fallbackSlides.length].description),
+    points: Array.isArray(slide.points) ? slide.points.map((point) => String(point).trim()).filter(Boolean) : [],
+    ctaLabel: readText(slide.ctaLabel ?? slide.cta_label ?? slide.buttonText ?? slide.button_text, fallbackSlides[index % fallbackSlides.length].ctaLabel),
+    ctaTo: readText(slide.ctaTo ?? slide.cta_to ?? slide.link ?? slide.href, fallbackSlides[index % fallbackSlides.length].ctaTo),
+    icon: typeof slide.icon === "string" ? resolveIcon(slide.icon) : fallbackSlides[index % fallbackSlides.length].icon,
+    tone: String(slide.tone ?? fallbackSlides[index % fallbackSlides.length].tone),
+    backgroundImage: readText(slide.backgroundImage ?? slide.background_image ?? slide.image, ""),
+  }));
 
   useEffect(() => {
     if (!api) {
@@ -142,7 +214,14 @@ const HeroBanner = () => {
             {slides.map((slide) => (
               <CarouselItem key={slide.id} className="basis-full pl-0">
                 <article
-                  className={`relative min-h-[315px] overflow-hidden rounded-none bg-gradient-to-br p-4 text-white sm:p-6 md:min-h-[360px] md:p-8 ${slide.tone}`}
+                  className={`relative min-h-[315px] overflow-hidden rounded-none bg-gradient-to-br bg-cover bg-center p-4 text-white sm:p-6 md:min-h-[360px] md:p-8 ${slide.tone}`}
+                  style={
+                    slide.backgroundImage
+                      ? {
+                          backgroundImage: `linear-gradient(rgba(25, 35, 90, 0.62), rgba(25, 35, 90, 0.62)), url(${slide.backgroundImage})`,
+                        }
+                      : undefined
+                  }
                 >
                   <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full border border-white/20" />
                   <div className="absolute -right-6 bottom-5 hidden h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur-sm md:flex">

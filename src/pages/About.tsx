@@ -17,14 +17,15 @@ import {
   Truck,
   Users,
 } from "lucide-react";
+import { useAboutContent, useContactSettings, useSiteSettings } from "@/hooks/useContent";
 
-const trustStats = [
+const fallbackTrustStats = [
   { value: "24/7", label: "Support for urgent needs" },
   { value: "Rent + Buy", label: "Flexible equipment options" },
   { value: "Pune", label: "Local home-care support" },
 ];
 
-const services = [
+const fallbackServices = [
   {
     icon: BedDouble,
     title: "Hospital Beds",
@@ -47,7 +48,7 @@ const services = [
   },
 ];
 
-const values = [
+const fallbackValues = [
   {
     icon: ShieldCheck,
     title: "Sanitized Equipment",
@@ -70,14 +71,52 @@ const values = [
   },
 ];
 
-const process = [
+const fallbackProcess = [
   "Share the patient requirement",
   "Get product guidance and pricing",
   "Confirm rent or purchase option",
   "Receive delivery and setup support",
 ];
 
+const iconMap = {
+  accessibility: Accessibility,
+  "bed-double": BedDouble,
+  "heart-pulse": HeartPulse,
+  home: Home,
+  "shield-check": ShieldCheck,
+  "indian-rupee": IndianRupee,
+  truck: Truck,
+  users: Users,
+};
+
 const About = () => {
+  const { data: aboutContent } = useAboutContent();
+  const { data: contactSettings } = useContactSettings();
+  const { data: siteSettings } = useSiteSettings();
+
+  const hero = aboutContent?.hero || {
+    title: "Hospital-grade medical equipment made easier for home care.",
+    subtitle:
+      "Sahyadri Surgical helps families rent or buy reliable medical equipment for recovery, elderly care, mobility support, respiratory care, and ICU-at-home needs.",
+    cta_primary_text: "Explore Products",
+    cta_primary_link: "/products",
+    cta_secondary_text: "Contact Team",
+    cta_secondary_link: "/contact",
+  };
+
+  const overview = aboutContent?.overview || {
+    title: "About Us",
+    description:
+      "At the heart of every recovery is a comfortable environment. We bridge the gap between advanced hospital care and the comfort of your home by providing premium medical equipment for rent and sale.",
+  };
+
+  const stats = aboutContent?.counters?.length ? aboutContent.counters : fallbackTrustStats;
+  const serviceCards = aboutContent?.values?.length ? aboutContent.values : fallbackServices;
+  const valueCards = aboutContent?.values?.length ? aboutContent.values : fallbackValues;
+  const processCards = aboutContent?.process?.length ? aboutContent.process : fallbackProcess;
+
+  const callNumber = contactSettings?.phone || String(siteSettings.call_number || "+919876543210");
+
   return (
     <div className="min-h-screen bg-[#f7f8fb] pb-16 md:pb-0">
       <Header />
@@ -88,28 +127,27 @@ const About = () => {
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-white/70">About Sahyadri Surgical</p>
               <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight md:text-5xl">
-                Hospital-grade medical equipment made easier for home care.
+                {hero.title}
               </h1>
               <p className="mt-5 max-w-2xl text-base leading-8 text-white/85">
-                Sahyadri Surgical helps families rent or buy reliable medical equipment for recovery, elderly care,
-                mobility support, respiratory care, and ICU-at-home needs.
+                {hero.subtitle}
               </p>
               <div className="mt-7 grid grid-cols-1 gap-3 min-[420px]:flex min-[420px]:flex-wrap">
                 <Button asChild className="w-full bg-white text-[#315f9d] hover:bg-white/90 min-[420px]:w-auto">
-                  <Link to="/products">Explore Products</Link>
+                  <Link to={String(hero.cta_primary_link || "/products")}>{hero.cta_primary_text || "Explore Products"}</Link>
                 </Button>
                 <Button asChild variant="outline" className="w-full border-white/40 bg-transparent text-white hover:bg-white/10 min-[420px]:w-auto">
-                  <Link to="/contact">Contact Team</Link>
+                  <Link to={String(hero.cta_secondary_link || "/contact")}>{hero.cta_secondary_text || "Contact Team"}</Link>
                 </Button>
               </div>
             </div>
 
             <div className="rounded-lg border border-white/15 bg-white/10 p-5">
               <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-                {trustStats.map((item) => (
-                  <div key={item.value} className="rounded-lg bg-white p-5 text-[#1f2937]">
-                    <p className="font-display text-2xl font-extrabold text-[#315f9d]">{item.value}</p>
-                    <p className="mt-1 text-sm text-[#667085]">{item.label}</p>
+                {stats.map((item: any) => (
+                  <div key={String(item.value || item.title)} className="rounded-lg bg-white p-5 text-[#1f2937]">
+                    <p className="font-display text-2xl font-extrabold text-[#315f9d]">{String(item.value || item.title)}</p>
+                    <p className="mt-1 text-sm text-[#667085]">{String(item.label || item.text || "")}</p>
                   </div>
                 ))}
               </div>
@@ -125,27 +163,23 @@ const About = () => {
               <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-[#e9eff8]">
                 <Stethoscope className="h-6 w-6 text-[#315f9d]" />
               </div>
-              <h2 className="font-display text-2xl font-bold text-[#111827]">About Us</h2>
-              <p className="mt-4 text-sm leading-7 text-[#5f6673]">
-                At the heart of every recovery is a comfortable environment. We bridge the gap between advanced hospital
-                care and the comfort of your home by providing premium medical equipment for rent and sale. Whether it's
-                an urgent need for critical respiratory support or long-term mobility assistance, we ensure that families
-                have immediate access to certified, hospital-grade technology without the heavy financial burden. We
-                don't just deliver machinery; we deliver peace of mind, reliability, and a commitment to standing by your
-                side when health takes top priority.
-              </p>
+              <h2 className="font-display text-2xl font-bold text-[#111827]">{overview.title}</h2>
+              <p className="mt-4 text-sm leading-7 text-[#5f6673]">{overview.description}</p>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">
-              {services.map((service) => (
-                <article key={service.title} className="rounded-lg border border-[#d9dde5] bg-white p-5 shadow-sm">
-                  <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-[#e9eff8]">
-                    <service.icon className="h-5 w-5 text-[#315f9d]" />
-                  </div>
-                  <h3 className="font-display text-lg font-bold text-[#315f9d]">{service.title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-[#667085]">{service.text}</p>
-                </article>
-              ))}
+              {serviceCards.map((service: any) => {
+                const Icon = iconMap[String(service.icon || "") as keyof typeof iconMap] || BedDouble;
+                return (
+                  <article key={String(service.title || service.text)} className="rounded-lg border border-[#d9dde5] bg-white p-5 shadow-sm">
+                    <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-lg bg-[#e9eff8]">
+                      <Icon className="h-5 w-5 text-[#315f9d]" />
+                    </div>
+                    <h3 className="font-display text-lg font-bold text-[#315f9d]">{String(service.title || "")}</h3>
+                    <p className="mt-2 text-sm leading-6 text-[#667085]">{String(service.text || service.description || "")}</p>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -161,13 +195,18 @@ const About = () => {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {values.map((value) => (
-              <article key={value.title} className="rounded-lg border border-[#d9dde5] bg-[#f7f8fb] p-5">
-                <value.icon className="h-7 w-7 text-[#315f9d]" />
-                <h3 className="mt-4 font-display text-lg font-bold text-[#111827]">{value.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-[#667085]">{value.text}</p>
-              </article>
-            ))}
+            {valueCards.map((value: any) => {
+              const Icon = iconMap[String(value.icon || "") as keyof typeof iconMap] || ShieldCheck;
+              return (
+                <article key={String(value.title || value.value)} className="rounded-lg border border-[#d9dde5] bg-[#f7f8fb] p-5">
+                  <Icon className="h-7 w-7 text-[#315f9d]" />
+                  <h3 className="mt-4 font-display text-lg font-bold text-[#111827]">
+                    {String(value.title || value.value || "")}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-[#667085]">{String(value.text || value.label || "")}</p>
+                </article>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -184,14 +223,14 @@ const About = () => {
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">
-              {process.map((step, index) => (
-                <div key={step} className="flex gap-3 rounded-lg bg-[#f7f8fb] p-4">
+              {processCards.map((step: any, index: number) => (
+                <div key={String(step.title || step)} className="flex gap-3 rounded-lg bg-[#f7f8fb] p-4">
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-[#315f9d] text-sm font-bold text-white">
                     {index + 1}
                   </span>
                   <div className="flex items-center gap-2">
                     <CheckCircle className="h-4 w-4 text-[#315f9d]" />
-                    <p className="text-sm font-semibold text-[#344054]">{step}</p>
+                    <p className="text-sm font-semibold text-[#344054]">{String(step.title || step)}</p>
                   </div>
                 </div>
               ))}
@@ -211,7 +250,7 @@ const About = () => {
             </div>
             <div className="grid grid-cols-1 gap-3 min-[420px]:flex min-[420px]:flex-wrap">
               <Button asChild className="w-full bg-white text-[#315f9d] hover:bg-white/90 min-[420px]:w-auto">
-                <a href="tel:+919876543210">
+                <a href={`tel:${callNumber}`}>
                   <Phone className="mr-2 h-4 w-4" />
                   Call Now
                 </a>
@@ -232,3 +271,4 @@ const About = () => {
 };
 
 export default About;
+

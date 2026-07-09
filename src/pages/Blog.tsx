@@ -4,22 +4,17 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 import MobileBottomBar from "@/components/MobileBottomBar";
 import { Link } from "react-router-dom";
 import { ArrowRight, BedDouble, Clock3, HeartPulse, ShieldCheck } from "lucide-react";
+import { useBlogs } from "@/hooks/useContent";
 
-const featuredPost = {
-  category: "Home ICU",
-  title: "Home ICU Setup Checklist: What Families Should Arrange First",
-  excerpt:
-    "When a loved one is discharged, the first 48 hours are critical. This checklist helps you prioritize the right equipment, room planning, and support services.",
-  date: "May 19, 2026",
-  readTime: "7 min read",
-  highlights: [
-    "How to prepare oxygen, suction, and monitoring support at home",
-    "Space planning for beds, movement, and caregiver access",
-    "When to rent vs buy depending on treatment duration",
-  ],
-};
-
-const posts = [
+const fallbackBlogs = [
+  {
+    title: "Home ICU Setup Checklist: What Families Should Arrange First",
+    excerpt:
+      "When a loved one is discharged, the first 48 hours are critical. This checklist helps you prioritize the right equipment, room planning, and support services.",
+    date: "May 19, 2026",
+    readTime: "7 min read",
+    category: "Home ICU",
+  },
   {
     title: "How To Choose The Right Home ICU Equipment",
     excerpt:
@@ -35,14 +30,6 @@ const posts = [
     date: "April 28, 2026",
     readTime: "4 min read",
     category: "Cost Planning",
-  },
-  {
-    title: "Daily Maintenance Tips For Medical Equipment",
-    excerpt:
-      "Simple do's and don'ts to keep your rented or purchased equipment safe, hygienic, and reliable.",
-    date: "March 21, 2026",
-    readTime: "6 min read",
-    category: "Safety",
   },
 ];
 
@@ -64,7 +51,29 @@ const topics = [
   },
 ];
 
+function formatDate(value?: string | null) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+}
+
 const Blog = () => {
+  const { data: blogRows } = useBlogs();
+  const blogs = blogRows.length
+    ? blogRows.map((blog) => ({
+        title: blog.title,
+        excerpt: blog.short_description,
+        date: formatDate(blog.published_at),
+        readTime: "5 min read",
+        category: blog.keywords ? blog.keywords.split(",")[0] : "Insights",
+        slug: blog.slug,
+      }))
+    : fallbackBlogs;
+
+  const featuredPost = blogs[0];
+  const posts = blogs.slice(1);
+
   return (
     <div className="min-h-screen bg-background pb-16 md:pb-0">
       <Header />
@@ -105,13 +114,6 @@ const Blog = () => {
               {featuredPost.title}
             </h2>
             <p className="mt-3 max-w-3xl text-muted-foreground">{featuredPost.excerpt}</p>
-            <ul className="mt-5 space-y-2">
-              {featuredPost.highlights.map((item) => (
-                <li key={item} className="text-sm text-foreground">
-                  - {item}
-                </li>
-              ))}
-            </ul>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 to="/products?mode=rent"

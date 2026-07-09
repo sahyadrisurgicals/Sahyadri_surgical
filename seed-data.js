@@ -1,0 +1,779 @@
+export const defaultAdmin = {
+  name: "Sahyadri Surgical Admin",
+  username: "sahyadri-surgical_admin",
+  password: "Sahyadrisurgical@123##",
+  role: "super_admin",
+};
+
+export const categories = [
+  { name: "Hospital Beds", slug: "hospital-beds", icon: "bed-double", display_order: 1, is_active: 1 },
+  { name: "Wheelchairs", slug: "wheelchairs", icon: "accessibility", display_order: 2, is_active: 1 },
+  { name: "Oxygen Equipment", slug: "oxygen-equipment", icon: "heart-pulse", display_order: 3, is_active: 1 },
+  { name: "Patient Monitors", slug: "patient-monitors", icon: "chart-column", display_order: 4, is_active: 1 },
+  { name: "Walkers & Crutches", slug: "walkers", icon: "person-standing", display_order: 5, is_active: 1 },
+  { name: "ICU at Home", slug: "icu-setup", icon: "home", display_order: 6, is_active: 1 },
+  { name: "Commode Chairs", slug: "commode-chairs", icon: "shower-head", display_order: 7, is_active: 1 },
+  { name: "Air Mattresses", slug: "air-mattress", icon: "bed-single", display_order: 8, is_active: 1 },
+  { name: "BiPAP / CPAP", slug: "bipap-cpap", icon: "wind", display_order: 9, is_active: 1 },
+  { name: "Suction Machines", slug: "suction-machines", icon: "syringe", display_order: 10, is_active: 1 },
+  { name: "IV Stands & Tables", slug: "iv-stands", icon: "line-spline", display_order: 11, is_active: 1 },
+  { name: "Accessories", slug: "accessories", icon: "package", display_order: 12, is_active: 1 },
+];
+
+export const services = [
+  {
+    title: "Home ICU Setup",
+    slug: "home-icu-setup",
+    short_description: "Critical care equipment planning and doorstep setup for home recovery.",
+    full_description:
+      "We help families arrange hospital-grade oxygen support, patient monitoring, suction machines, and beds for safe home ICU care.",
+    image:
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&h=900&fit=crop",
+    icon: "heart-pulse",
+    features: ["Equipment planning", "Doorstep installation", "Urgent delivery", "Support guidance"],
+    display_order: 1,
+    is_active: 1,
+  },
+  {
+    title: "Mobility Aids",
+    slug: "mobility-aids",
+    short_description: "Wheelchairs, walkers, commode chairs, and walking sticks for safer movement.",
+    full_description:
+      "We provide reliable mobility support equipment for elderly care, post-surgery recovery, and day-to-day movement assistance.",
+    image:
+      "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1200&h=900&fit=crop",
+    icon: "accessibility",
+    features: ["Lightweight options", "Foldable designs", "Rental and buy plans", "Fast exchange support"],
+    display_order: 2,
+    is_active: 1,
+  },
+  {
+    title: "Respiratory Support",
+    slug: "respiratory-support",
+    short_description: "Oxygen concentrators, cylinders, BiPAP, CPAP, and suction machines.",
+    full_description:
+      "Our respiratory support equipment is suitable for short-term recovery and long-term home care. Every device is checked before dispatch.",
+    image:
+      "https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?w=1200&h=900&fit=crop",
+    icon: "wind",
+    features: ["Medical-grade devices", "Setup guidance", "Rental support", "Trusted by families"],
+    display_order: 3,
+    is_active: 1,
+  },
+  {
+    title: "Patient Monitoring",
+    slug: "patient-monitoring",
+    short_description: "Monitors and home-care devices for continuous observation and safety.",
+    full_description:
+      "From multi-para patient monitors to daily care essentials, our support helps families monitor patient recovery with confidence.",
+    image:
+      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&h=900&fit=crop",
+    icon: "chart-column",
+    features: ["Visual alarms", "Portable devices", "Usage support", "Quick dispatch"],
+    display_order: 4,
+    is_active: 1,
+  },
+];
+
+export const products = [
+  {
+    name: "Semi Fowler Hospital Bed",
+    slug: "semi-fowler-bed",
+    category_slug: "hospital-beds",
+    rent_price: 1800,
+    buy_price: 18500,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&h=900&fit=crop",
+    description:
+      "Premium semi-fowler hospital bed with adjustable backrest and knee rest. Ideal for home patient care with easy-to-use manual cranks.",
+    benefits: [
+      "Adjustable backrest",
+      "Side railings included",
+      "Castors with brakes",
+      "Mattress included",
+    ],
+    specifications: [
+      "Backrest adjustment: 0-80 degrees",
+      "Knee rest adjustment",
+      "Weight capacity: 150kg",
+      "Manual crank operation",
+    ],
+    features: ["Easy manual operation", "Collapsible side rails", "IV pole holder", "Mattress included"],
+    is_top_selling: 1,
+    display_order: 1,
+    is_active: 1,
+  },
+  {
+    name: "Full Fowler Electric Bed",
+    slug: "fowler-bed-electric",
+    category_slug: "hospital-beds",
+    rent_price: 3500,
+    buy_price: 45000,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1200&h=900&fit=crop",
+    description:
+      "Fully electric hospital bed with remote control for backrest, knee rest, and height adjustment.",
+    benefits: ["Remote controlled", "Battery backup", "Anti-bacterial coating", "Comfort for long use"],
+    specifications: [
+      "Electric backrest: 0-85 degrees",
+      "Electric knee rest",
+      "Height adjustable",
+      "Weight capacity: 200kg",
+    ],
+    features: ["Remote controlled", "Trendelenburg position", "CPR release", "Anti-bacterial coating"],
+    is_top_selling: 0,
+    display_order: 2,
+    is_active: 1,
+  },
+  {
+    name: "Standard Wheelchair",
+    slug: "standard-wheelchair",
+    category_slug: "wheelchairs",
+    rent_price: 1000,
+    buy_price: 5500,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=900&fit=crop",
+    description:
+      "Durable standard wheelchair with chrome-plated steel frame. Comfortable seating with armrests and footrests.",
+    benefits: ["Foldable design", "Detachable footrests", "Comfortable armrests", "Easy to transport"],
+    specifications: [
+      "Seat width: 18 inches",
+      "Chrome steel frame",
+      "Weight capacity: 100kg",
+      "Solid tyres",
+    ],
+    features: ["Lightweight foldable", "Detachable footrests", "Comfortable armrests", "Easy to transport"],
+    is_top_selling: 1,
+    display_order: 3,
+    is_active: 1,
+  },
+  {
+    name: "Oxygen Concentrator 5L",
+    slug: "oxygen-concentrator-5l",
+    category_slug: "oxygen-equipment",
+    rent_price: 4500,
+    buy_price: 42000,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=1200&h=900&fit=crop",
+    description:
+      "Medical-grade 5-liter oxygen concentrator for home use. Continuous flow with adjustable settings.",
+    benefits: ["Low noise operation", "Timer function", "Nebulizer connection", "Alarm system"],
+    specifications: ["Flow rate: 1-5 LPM", "Oxygen purity: 93% +/- 3%", "Noise level: <=45 dB", "Power: 350W"],
+    features: ["Low noise operation", "Timer function", "Nebulizer connection", "Alarm system"],
+    is_top_selling: 1,
+    display_order: 4,
+    is_active: 1,
+  },
+  {
+    name: "Walker Without Wheels",
+    slug: "walker-without-wheel",
+    category_slug: "walkers",
+    rent_price: 550,
+    buy_price: 2200,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1559757175-7cb057fba93c?w=1200&h=900&fit=crop",
+    description:
+      "Standard aluminum walker for elderly and post-surgery patients. Lightweight and foldable.",
+    benefits: ["Anti-slip rubber tips", "Easy height adjustment", "Compact fold", "Comfortable grip"],
+    specifications: ["Height adjustable", "Aluminum frame", "Foldable", "Weight: 2.5kg", "Capacity: 100kg"],
+    features: ["Anti-slip rubber tips", "Easy height adjustment", "Compact fold", "Comfortable grip"],
+    is_top_selling: 1,
+    display_order: 5,
+    is_active: 1,
+  },
+  {
+    name: "Tripod Walking Stick",
+    slug: "tripod-walking-stick",
+    category_slug: "walkers",
+    rent_price: 450,
+    buy_price: 1600,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?w=1200&h=900&fit=crop",
+    description:
+      "Self-standing tripod walking stick with a broad three-pronged base for better balance and stable mobility support.",
+    benefits: [
+      "Maximum base stability",
+      "Broad-load support",
+      "Dual-sided orientation",
+      "Non-slip floor grip",
+    ],
+    specifications: [
+      "Three-pronged self-standing base",
+      "Height-adjustable shaft",
+      "Reinforced aluminium body",
+      "Anti-slip rubber tips",
+    ],
+    features: [
+      "Maximum base stability",
+      "Broad-load support",
+      "Dual-sided orientation",
+      "Heavy-duty aluminium frame",
+    ],
+    is_top_selling: 0,
+    display_order: 6,
+    is_active: 1,
+  },
+  {
+    name: "Multi-Para Patient Monitor",
+    slug: "patient-monitor",
+    category_slug: "patient-monitors",
+    rent_price: 5000,
+    buy_price: 55000,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&h=900&fit=crop",
+    description:
+      "5-parameter patient monitor tracking ECG, SpO2, NIBP, temperature, and respiration rate.",
+    benefits: ["Real-time monitoring", "Visual and audio alarms", "Trend analysis", "Portable design"],
+    specifications: [
+      "12.1 inch display",
+      "5 parameters",
+      "Battery backup: 3hrs",
+      "Alarm system",
+    ],
+    features: ["Real-time monitoring", "Visual and audio alarms", "Trend analysis", "Portable design"],
+    is_top_selling: 0,
+    display_order: 7,
+    is_active: 1,
+  },
+  {
+    name: "BiPAP Machine",
+    slug: "bipap-machine",
+    category_slug: "bipap-cpap",
+    rent_price: 6000,
+    buy_price: 65000,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?w=1200&h=900&fit=crop",
+    description:
+      "Advanced BiPAP machine for sleep apnea and respiratory support with humidifier.",
+    benefits: ["Auto pressure adjust", "Heated humidifier", "Mask leak compensation", "Ramp function"],
+    specifications: ["Pressure: 4-30 cmH2O", "Built-in humidifier", "Auto-titrating", "Quiet operation"],
+    features: ["Auto pressure adjust", "Heated humidifier", "Mask leak compensation", "Ramp function"],
+    is_top_selling: 0,
+    display_order: 8,
+    is_active: 1,
+  },
+  {
+    name: "Commode Chair with Wheels",
+    slug: "commode-chair",
+    category_slug: "commode-chairs",
+    rent_price: 800,
+    buy_price: 3800,
+    rent_unit: "month",
+    price_type: "both",
+    image:
+      "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1200&h=900&fit=crop",
+    description:
+      "Height-adjustable commode chair with wheels for easy mobility. Suitable for bedside use.",
+    benefits: ["Easy to clean", "Foldable design", "Padded seat", "Anti-tip wheels"],
+    specifications: ["Height adjustable", "Removable bucket", "Locking wheels", "Capacity: 120kg"],
+    features: ["Easy to clean", "Foldable design", "Padded seat", "Anti-tip wheels"],
+    is_top_selling: 0,
+    display_order: 9,
+    is_active: 1,
+  },
+];
+
+export const gallery = [
+  {
+    title: "Hospital Bed Setup",
+    category: "beds",
+    alt_text: "Hospital bed for home care",
+    image_url:
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&h=900&fit=crop",
+    display_order: 1,
+    is_active: 1,
+  },
+  {
+    title: "Wheelchair Support",
+    category: "mobility",
+    alt_text: "Wheelchair for patient mobility",
+    image_url:
+      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=900&fit=crop",
+    display_order: 2,
+    is_active: 1,
+  },
+  {
+    title: "Respiratory Equipment",
+    category: "oxygen",
+    alt_text: "Oxygen concentrator for home use",
+    image_url:
+      "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=1200&h=900&fit=crop",
+    display_order: 3,
+    is_active: 1,
+  },
+  {
+    title: "Monitoring Devices",
+    category: "monitoring",
+    alt_text: "Patient monitoring equipment",
+    image_url:
+      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&h=900&fit=crop",
+    display_order: 4,
+    is_active: 1,
+  },
+];
+
+export const testimonials = [
+  {
+    client_name: "Indrani Vaze",
+    client_photo: "https://i.pravatar.cc/160?img=32",
+    review_text:
+      "I am really impressed with the professional service. The wheelchair was delivered quickly and in excellent condition.",
+    rating: 5,
+    location: "Pune",
+    display_order: 1,
+    is_active: 1,
+  },
+  {
+    client_name: "Hiten Vachharajani",
+    client_photo: "https://i.pravatar.cc/160?img=12",
+    review_text:
+      "This is the second time I have ordered and I am very impressed by their service and the products provided on rent.",
+    rating: 5,
+    location: "Mumbai",
+    display_order: 2,
+    is_active: 1,
+  },
+  {
+    client_name: "Priya Jaiswal",
+    client_photo: "https://i.pravatar.cc/160?img=47",
+    review_text:
+      "Great experience. The equipment was affordable, delivery was on time, and the staff was polite and supportive.",
+    rating: 5,
+    location: "Nashik",
+    display_order: 3,
+    is_active: 1,
+  },
+  {
+    client_name: "Pranay Nanda",
+    client_photo: "https://i.pravatar.cc/160?img=18",
+    review_text:
+      "I needed a walking stick for my mother-in-law and the team arranged doorstep delivery in a few hours.",
+    rating: 5,
+    location: "Pune",
+    display_order: 4,
+    is_active: 1,
+  },
+];
+
+export const blogs = [
+  {
+    title: "Home ICU Setup Checklist: What Families Should Arrange First",
+    slug: "home-icu-setup-checklist",
+    image:
+      "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1200&h=900&fit=crop",
+    short_description:
+      "A practical guide for families preparing a safe home ICU setup after discharge.",
+    content:
+      "When a loved one is discharged, the first 48 hours are critical. This guide helps prioritize equipment, room planning, and support services.",
+    seo_title: "Home ICU Setup Checklist",
+    meta_description: "Practical guide for families preparing a safe home ICU setup.",
+    keywords: "home ICU, oxygen support, patient care, recovery",
+    published: 1,
+    display_order: 1,
+  },
+  {
+    title: "How To Choose The Right Home ICU Equipment",
+    slug: "choose-home-icu-equipment",
+    image:
+      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&h=900&fit=crop",
+    short_description:
+      "A practical checklist for families who need hospital-grade support at home.",
+    content:
+      "Learn how to pick oxygen devices, patient monitors, beds, and mobility aids for the right recovery plan.",
+    seo_title: "Choose the Right Home ICU Equipment",
+    meta_description: "Checklist for choosing hospital-grade support at home.",
+    keywords: "home care equipment, patient monitor, oxygen concentrator",
+    published: 1,
+    display_order: 2,
+  },
+  {
+    title: "Rent Vs Buy: What Works Best For Recovery Care",
+    slug: "rent-vs-buy-recovery-care",
+    image:
+      "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1200&h=900&fit=crop",
+    short_description:
+      "Understand when renting is the smarter option and when buying is more economical.",
+    content:
+      "Recovery timelines differ. This article compares rental and purchase options so families can make a practical decision.",
+    seo_title: "Rent vs Buy for Recovery Care",
+    meta_description: "Compare rental and purchase options for medical equipment.",
+    keywords: "rent vs buy, medical equipment rental, home care",
+    published: 1,
+    display_order: 3,
+  },
+];
+
+export const homeSections = [
+  {
+    section_key: "hero_slides",
+    section_label: "Hero Slides",
+    is_active: 1,
+    content_json: JSON.stringify([
+      {
+        id: 1,
+        badge: "Limited Time Combo Offers",
+        title: "Buy Hospital Bed and Save More",
+        description: "Get add-on discounts on air bed, overbed table, IV stand, and wheelchair accessories.",
+        points: [
+          "Air bed up to 25% off",
+          "Food table up to 25% off",
+          "IV stand up to 25% off",
+          "Extra rental savings on combo orders",
+        ],
+        ctaLabel: "View Combo Deals",
+        ctaTo: "/products?mode=buy",
+        icon: "bed-double",
+        tone: "from-[#202d83] via-[#293a98] to-[#3249ad]",
+        backgroundImage: "",
+      },
+      {
+        id: 2,
+        badge: "Buy & Rent Quality",
+        title: "Medical Equipment Delivered Fast",
+        description: "Express dispatch, secure payments, and verified devices for home care recovery.",
+        points: [
+          "Same-day service in major cities",
+          "100% sanitized and safety checked",
+          "Affordable weekly and monthly plans",
+          "Support team available every day",
+        ],
+        ctaLabel: "Explore Rentals",
+        ctaTo: "/products?mode=rent",
+        icon: "truck",
+        tone: "from-[#1f2b7d] via-[#2a3991] to-[#4256b6]",
+        backgroundImage: "",
+      },
+      {
+        id: 3,
+        badge: "ICU At Home Support",
+        title: "Critical Care Setup For Home",
+        description: "From oxygen concentrators to monitors, we help families create safe home ICU spaces.",
+        points: [
+          "Equipment planning with experts",
+          "On-time delivery and installation",
+          "Flexible rent duration options",
+          "Priority service for urgent needs",
+        ],
+        ctaLabel: "ICU At Home",
+        ctaTo: "/icu-at-home",
+        icon: "heart-pulse",
+        tone: "from-[#243084] via-[#30439d] to-[#4960bf]",
+        backgroundImage: "",
+      },
+      {
+        id: 4,
+        badge: "Mobility Care Specials",
+        title: "Wheelchair and Walker Offers",
+        description: "Choose lightweight mobility aids for post-surgery and elderly home support.",
+        points: [
+          "Standard and premium wheelchair variants",
+          "Walker and crutches rental plans",
+          "Comfort-focused models for long use",
+          "Quick replacement on request",
+        ],
+        ctaLabel: "Shop Mobility Aids",
+        ctaTo: "/products?search=wheelchair",
+        icon: "accessibility",
+        tone: "from-[#212f86] via-[#30429b] to-[#5368c2]",
+        backgroundImage: "",
+      },
+      {
+        id: 5,
+        badge: "Trusted Home Healthcare",
+        title: "Certified Equipment, Transparent Pricing",
+        description: "Quality-tested products with clear rental and purchase options for every family budget.",
+        points: [
+          "No hidden charges in monthly plans",
+          "Fully cleaned before every delivery",
+          "Guidance from trained support team",
+          "Trusted by families across Maharashtra",
+        ],
+        ctaLabel: "Talk To Our Team",
+        ctaTo: "/contact",
+        icon: "shield-check",
+        tone: "from-[#1d2a79] via-[#2d3f98] to-[#455cb9]",
+        backgroundImage: "",
+      },
+    ]),
+  },
+  {
+    section_key: "trust_highlights",
+    section_label: "Trust Highlights",
+    is_active: 1,
+    content_json: JSON.stringify([
+      { title: "Express Delivery", subtitle: "Same day in most cities", icon: "truck" },
+      { title: "Affordable Rentals", subtitle: "Starting Rs 199/day", icon: "indian-rupee" },
+      { title: "Certified Equipment", subtitle: "Sanitized and safety checked", icon: "shield-check" },
+      { title: "Secure Payments", subtitle: "100% safe and refundable", icon: "shield-check" },
+    ]),
+  },
+  {
+    section_key: "client_logos",
+    section_label: "Client Logos",
+    is_active: 1,
+    content_json: JSON.stringify([
+      { name: "Axis Orthopedic Hospital", logoKey: "axis" },
+      { name: "Apollo Hospitals", logoKey: "apollo" },
+      { name: "Apple Hospital", logoKey: "apple" },
+      { name: "Astha Hospital", logoKey: "astha" },
+      { name: "Diya Hospitals", logoKey: "diya" },
+    ]),
+  },
+  {
+    section_key: "home_images",
+    section_label: "Home Images",
+    is_active: 1,
+    content_json: JSON.stringify([
+      {
+        title: "Hospital Bed Banner",
+        image:
+          "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&h=900&fit=crop",
+        altText: "Hospital bed for home care",
+      },
+      {
+        title: "Wheelchair Support",
+        image:
+          "https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=1200&h=900&fit=crop",
+        altText: "Wheelchair support",
+      },
+      {
+        title: "Oxygen Support",
+        image:
+          "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=1200&h=900&fit=crop",
+        altText: "Oxygen concentrator",
+      },
+    ]),
+  },
+  {
+    section_key: "seo",
+    section_label: "Home SEO",
+    is_active: 1,
+    content_json: JSON.stringify({
+      meta_title: "Sahyadri Surgical | Medical Equipment Rental and Sales",
+      meta_description:
+        "Rent and buy hospital beds, wheelchairs, oxygen equipment, and home ICU solutions.",
+      keywords: "medical equipment rental, hospital bed, wheelchair, oxygen concentrator",
+      canonical_url: "https://vital-home-solutions.vercel.app/",
+    }),
+  },
+];
+
+export const aboutSections = [
+  {
+    section_key: "hero",
+    section_label: "About Hero",
+    is_active: 1,
+    content_json: JSON.stringify({
+      title: "Hospital-grade medical equipment made easier for home care.",
+      subtitle:
+        "Sahyadri Surgical helps families rent or buy reliable medical equipment for recovery, elderly care, mobility support, respiratory care, and ICU-at-home needs.",
+      cta_primary_text: "Explore Products",
+      cta_primary_link: "/products",
+      cta_secondary_text: "Contact Team",
+      cta_secondary_link: "/contact",
+      image:
+        "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&h=900&fit=crop",
+    }),
+  },
+  {
+    section_key: "overview",
+    section_label: "About Overview",
+    is_active: 1,
+    content_json: JSON.stringify({
+      title: "About Us",
+      description:
+        "At the heart of every recovery is a comfortable environment. We bridge the gap between advanced hospital care and the comfort of your home by providing premium medical equipment for rent and sale.",
+    }),
+  },
+  {
+    section_key: "mission",
+    section_label: "Mission",
+    is_active: 1,
+    content_json: JSON.stringify({
+      title: "Our Mission",
+      description:
+        "To deliver trusted equipment and responsive service through a robust healthcare rental model that improves recovery outcomes at home.",
+    }),
+  },
+  {
+    section_key: "vision",
+    section_label: "Vision",
+    is_active: 1,
+    content_json: JSON.stringify({
+      title: "Our Vision",
+      description:
+        "Quality medical care and equipment support made patient-centric, accessible, and affordable at the doorstep.",
+    }),
+  },
+  {
+    section_key: "values",
+    section_label: "Why Choose Us",
+    is_active: 1,
+    content_json: JSON.stringify([
+      {
+        title: "Sanitized Equipment",
+        text: "Products are checked, cleaned, and prepared before dispatch for home use.",
+        icon: "shield-check",
+      },
+      {
+        title: "Affordable Access",
+        text: "Rental and purchase options help families choose what fits treatment duration and budget.",
+        icon: "indian-rupee",
+      },
+      {
+        title: "Doorstep Coordination",
+        text: "Our team coordinates delivery and support so families can focus on recovery.",
+        icon: "truck",
+      },
+      {
+        title: "Caregiver Friendly",
+        text: "We help families understand the right equipment for post-surgery, elderly, and critical-care needs.",
+        icon: "users",
+      },
+    ]),
+  },
+  {
+    section_key: "counters",
+    section_label: "Experience Counters",
+    is_active: 1,
+    content_json: JSON.stringify([
+      { value: "24/7", label: "Support for urgent needs" },
+      { value: "Rent + Buy", label: "Flexible equipment options" },
+      { value: "Pune", label: "Local home-care support" },
+    ]),
+  },
+  {
+    section_key: "process",
+    section_label: "Process",
+    is_active: 1,
+    content_json: JSON.stringify([
+      "Share the patient requirement",
+      "Get product guidance and pricing",
+      "Confirm rent or purchase option",
+      "Receive delivery and setup support",
+    ]),
+  },
+  {
+    section_key: "seo",
+    section_label: "About SEO",
+    is_active: 1,
+    content_json: JSON.stringify({
+      meta_title: "About Sahyadri Surgical",
+      meta_description: "Learn more about Sahyadri Surgical home-care medical equipment solutions.",
+      keywords: "about sahyadri surgical, home care equipment, medical rental",
+      canonical_url: "https://vital-home-solutions.vercel.app/about",
+    }),
+  },
+];
+
+export const contactSettings = {
+  phone: "+91 98765 43210",
+  whatsapp: "+91 98765 43210",
+  email: "info@sahyadrisurgicals.com",
+  address: "Pune, Maharashtra, India",
+  map_iframe:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242117.68070802!2d73.72288!3d18.524598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000",
+  business_hours: "Monday - Sunday, 8:30 am to 9:00 pm",
+  social_links: JSON.stringify({
+    facebook: "",
+    instagram: "",
+    linkedin: "",
+    youtube: "",
+  }),
+};
+
+export const siteSettings = [
+  { setting_key: "site_name", setting_value: "Sahyadri Surgical" },
+  { setting_key: "logo_text", setting_value: "SS" },
+  { setting_key: "footer_credit", setting_value: "Designed by Webakoof" },
+  { setting_key: "footer_copyright", setting_value: "2026 Sahyadri Surgical. All Rights Reserved." },
+  { setting_key: "call_number", setting_value: "+919876543210" },
+  { setting_key: "whatsapp_number", setting_value: "919876543210" },
+  { setting_key: "whatsapp_message", setting_value: "Hi, I want to inquire about medical equipment" },
+  { setting_key: "primary_city", setting_value: "Pune" },
+  { setting_key: "support_email", setting_value: "info@sahyadrisurgicals.com" },
+  { setting_key: "support_phone", setting_value: "+91 98765 43210" },
+  {
+    setting_key: "social_links",
+    setting_value: JSON.stringify({
+      facebook: "",
+      instagram: "",
+      linkedin: "",
+      youtube: "",
+    }),
+  },
+];
+
+export const seoSettings = [
+  {
+    page_name: "home",
+    meta_title: "Sahyadri Surgical | Medical Equipment Rental and Sales",
+    meta_description:
+      "Rent and buy hospital beds, wheelchairs, oxygen equipment, and home ICU solutions.",
+    keywords: "medical equipment rental, hospital bed, wheelchair, oxygen concentrator",
+    og_image:
+      "https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=1200&h=630&fit=crop",
+    canonical_url: "https://vital-home-solutions.vercel.app/",
+  },
+  {
+    page_name: "products",
+    meta_title: "Products | Sahyadri Surgical",
+    meta_description: "Browse medical equipment and home-care solutions available to rent or buy.",
+    keywords: "products, medical equipment, rental, buy",
+    og_image:
+      "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1200&h=630&fit=crop",
+    canonical_url: "https://vital-home-solutions.vercel.app/products",
+  },
+  {
+    page_name: "about",
+    meta_title: "About | Sahyadri Surgical",
+    meta_description: "Learn more about Sahyadri Surgical and our home-care medical solutions.",
+    keywords: "about, home care, medical solutions",
+    og_image:
+      "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=1200&h=630&fit=crop",
+    canonical_url: "https://vital-home-solutions.vercel.app/about",
+  },
+  {
+    page_name: "contact",
+    meta_title: "Contact | Sahyadri Surgical",
+    meta_description: "Contact Sahyadri Surgical for equipment guidance, rentals, or purchases.",
+    keywords: "contact, sahyadri surgical, medical equipment",
+    og_image:
+      "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&h=630&fit=crop",
+    canonical_url: "https://vital-home-solutions.vercel.app/contact",
+  },
+  {
+    page_name: "blog",
+    meta_title: "Blog | Sahyadri Surgical",
+    meta_description: "Practical guides for home healthcare equipment, recovery, and caregiver support.",
+    keywords: "blog, home care, recovery, caregiver support",
+    og_image:
+      "https://images.unsplash.com/photo-1631815587646-b85a1bb027e1?w=1200&h=630&fit=crop",
+    canonical_url: "https://vital-home-solutions.vercel.app/blog",
+  },
+  {
+    page_name: "vendor-registration",
+    meta_title: "Vendor Registration | Sahyadri Surgical",
+    meta_description: "Register as a vendor with Sahyadri Surgical.",
+    keywords: "vendor registration, medical equipment vendor",
+    og_image:
+      "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1200&h=630&fit=crop",
+    canonical_url: "https://vital-home-solutions.vercel.app/vendor-registration",
+  },
+];

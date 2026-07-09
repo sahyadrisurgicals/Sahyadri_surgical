@@ -1,14 +1,24 @@
 export interface Product {
   id: string;
+  slug?: string;
   name: string;
   category: string;
+  categoryId?: number;
+  categoryName?: string;
+  categoryIcon?: string;
   rentPrice: number;
   rentUnit: string;
   buyPrice: number;
   image: string;
+  images?: string[];
   description: string;
   specs: string[];
   features: string[];
+  benefits?: string[];
+  specifications?: string[];
+  priceType?: string;
+  topSelling?: boolean;
+  displayOrder?: number;
   available: boolean;
 }
 
@@ -17,6 +27,10 @@ export interface Category {
   name: string;
   icon: string;
   count: number;
+  slug?: string;
+  image?: string;
+  displayOrder?: number;
+  isActive?: boolean;
 }
 
 export const categories: Category[] = [

@@ -5,8 +5,9 @@ import appleLogo from "@/assets/client-apple.svg";
 import asthaLogo from "@/assets/client-astha.svg";
 import diyaLogo from "@/assets/client-diya.svg";
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { useHomeContent, useTestimonials } from "@/hooks/useContent";
 
-const clients = [
+const fallbackClients = [
   { name: "Axis Orthopedic Hospital", logo: axisLogo },
   { name: "Apollo Hospitals", logo: apolloLogo },
   { name: "Apple Hospital", logo: appleLogo },
@@ -14,7 +15,7 @@ const clients = [
   { name: "Diya Hospitals", logo: diyaLogo },
 ];
 
-const testimonials = [
+const fallbackTestimonials = [
   {
     quote:
       "I am really impressed with the professional service offered by Quali5care. I was in need of a recliner wheelchair and got their number from Google. The wheelchair was delivered quickly and in excellent condition.",
@@ -37,11 +38,47 @@ const testimonials = [
   },
 ];
 
+const clientLogoMap: Record<string, string> = {
+  axis: axisLogo,
+  apollo: apolloLogo,
+  apple: appleLogo,
+  astha: asthaLogo,
+  diya: diyaLogo,
+};
+
+function isActiveItem(item: any) {
+  const value = item?.is_active ?? item?.isActive;
+  if (value === undefined || value === null) return true;
+  if (typeof value === "boolean") return value;
+  if (typeof value === "number") return value !== 0;
+  const normalized = String(value).toLowerCase().trim();
+  return !["0", "false", "inactive", "off", "disabled"].includes(normalized);
+}
+
+function resolveClientLogo(value: any) {
+  const rawLogo = String(value?.logoKey ?? value?.logo_key ?? value?.logo ?? value?.image ?? "").trim();
+  if (!rawLogo) return "";
+  return clientLogoMap[rawLogo] || rawLogo;
+}
+
 const ClientTestimonials = () => {
   const [clientsApi, setClientsApi] = useState<CarouselApi>();
   const [testimonialsApi, setTestimonialsApi] = useState<CarouselApi>();
   const [clientSlide, setClientSlide] = useState(0);
   const [testimonialSlide, setTestimonialSlide] = useState(0);
+  const { data: homeContent } = useHomeContent();
+  const { data: testimonialRows } = useTestimonials();
+
+  const sourceClients = (homeContent?.clientLogos?.length ? homeContent.clientLogos : fallbackClients).filter(isActiveItem);
+  const clients = (sourceClients.length ? sourceClients : fallbackClients).map((client: any) => ({
+    name: String(client.name ?? client.client_name ?? "Client"),
+    logo: resolveClientLogo(client) || String(client.logo || ""),
+  }));
+
+  const testimonials = (testimonialRows?.length ? testimonialRows : fallbackTestimonials).map((item: any) => ({
+    quote: String(item.review_text ?? item.quote ?? ""),
+    author: String(item.client_name ?? item.author ?? ""),
+  }));
 
   useEffect(() => {
     if (!clientsApi) {

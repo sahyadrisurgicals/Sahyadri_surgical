@@ -11,6 +11,9 @@ node_modules
 dist
 dist-ssr
 dist.zip
+uploads
+tools/php
+tools/php.zip
 *.local
 
 # Editor directories and files
@@ -24,4 +27,3 @@ dist.zip
 *.sln
 *.sw?
 .env
-

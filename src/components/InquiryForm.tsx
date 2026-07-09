@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
-import { createEnquiry } from "@/lib/api";
+import { submitEnquiry } from "@/lib/api";
 
 const InquiryForm = () => {
   const { toast } = useToast();
@@ -14,10 +14,12 @@ const InquiryForm = () => {
     e.preventDefault();
     setSubmitting(true);
     try {
-      await createEnquiry({
+      await submitEnquiry({
         name: form.name,
         phone: form.phone,
+        service_interested: form.equipment,
         message: `Equipment needed: ${form.equipment}`,
+        source_page: "homepage",
       });
       toast({ title: "Inquiry Sent!", description: "We'll get back to you shortly." });
       setForm({ name: "", phone: "", equipment: "" });

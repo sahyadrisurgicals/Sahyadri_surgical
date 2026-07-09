@@ -1,4 +1,20 @@
-import { LayoutDashboard, Package, MessageSquare, Settings, LogOut, Menu } from "lucide-react";
+import {
+  LayoutDashboard,
+  Package,
+  MessageSquare,
+  Settings,
+  LogOut,
+  Shapes,
+  Truck,
+  Image,
+  MessageSquareQuote,
+  FileText,
+  Home,
+  UserRound,
+  Search,
+  Store,
+  BadgeInfo,
+} from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
@@ -15,11 +31,22 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
+import { useAdminAuth } from "@/context/AdminAuthContext";
 
 const menuItems = [
   { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
+  { title: "Categories", url: "/admin/categories", icon: Shapes },
   { title: "Products", url: "/admin/products", icon: Package },
+  { title: "Services", url: "/admin/services", icon: Truck },
+  { title: "Gallery", url: "/admin/gallery", icon: Image },
+  { title: "Testimonials", url: "/admin/testimonials", icon: MessageSquareQuote },
+  { title: "Blogs", url: "/admin/blogs", icon: FileText },
+  { title: "Home", url: "/admin/home", icon: Home },
+  { title: "About", url: "/admin/about", icon: BadgeInfo },
+  { title: "Contact", url: "/admin/contact", icon: MessageSquare },
+  { title: "SEO", url: "/admin/seo", icon: Search },
   { title: "Inquiries", url: "/admin/inquiries", icon: MessageSquare },
+  { title: "Vendors", url: "/admin/vendors", icon: Store },
   { title: "Settings", url: "/admin/settings", icon: Settings },
 ];
 
@@ -28,6 +55,7 @@ export function AdminSidebar() {
   const collapsed = state === "collapsed";
   const location = useLocation();
   const navigate = useNavigate();
+  const { logout, admin } = useAdminAuth();
 
   const isActive = (path: string) =>
     path === "/admin" ? location.pathname === "/admin" : location.pathname.startsWith(path);
@@ -86,10 +114,13 @@ export function AdminSidebar() {
           variant="ghost"
           size="sm"
           className="w-full justify-start text-muted-foreground hover:text-foreground"
-          onClick={() => navigate("/")}
+          onClick={async () => {
+            await logout();
+            navigate("/admin/login", { replace: true });
+          }}
         >
           <LogOut className="h-4 w-4" />
-          {!collapsed && <span className="ml-2">Back to Site</span>}
+          {!collapsed && <span className="ml-2">Logout{admin ? `, ${admin.name}` : ""}</span>}
         </Button>
       </SidebarFooter>
     </Sidebar>
