@@ -1,4 +1,4 @@
-import { useState, useMemo, type ComponentType } from "react";
+import { useEffect, useState, useMemo, type ComponentType } from "react";
 import { useSearchParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -31,7 +31,7 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
 };
 
 const Products = () => {
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get("category") || "");
   const [mode, setMode] = useState(searchParams.get("mode") || "rent");
   const [showFilters, setShowFilters] = useState(false);
@@ -39,8 +39,31 @@ const Products = () => {
   const { products, loading, error } = useProducts();
   const { data: categories } = useCategories();
 
+  useEffect(() => {
+    setMode(searchParams.get("mode") === "buy" ? "buy" : "rent");
+    setSelectedCategory(searchParams.get("category") || "");
+  }, [searchParams]);
+
+  const updateMode = (nextMode: string) => {
+    const nextParams = new URLSearchParams(searchParams);
+    nextParams.set("mode", nextMode);
+    setSearchParams(nextParams);
+  };
+
+  const updateCategory = (nextCategory: string) => {
+    const nextParams = new URLSearchParams(searchParams);
+    if (nextCategory) {
+      nextParams.set("category", nextCategory);
+    } else {
+      nextParams.delete("category");
+    }
+    setSearchParams(nextParams);
+    setShowFilters(false);
+  };
+
   const filtered = useMemo(() => {
     let result = products;
+    result = result.filter((p) => (mode === "buy" ? Number(p.buyPrice) > 0 : Number(p.rentPrice) > 0));
     if (selectedCategory) {
       result = result.filter((p) => p.category === selectedCategory);
     }
@@ -51,7 +74,7 @@ const Products = () => {
       );
     }
     return result;
-  }, [products, selectedCategory, searchQuery]);
+  }, [products, mode, selectedCategory, searchQuery]);
 
   return (
     <div className="min-h-screen bg-background pb-16 md:pb-0">
@@ -82,7 +105,7 @@ const Products = () => {
                     size="sm"
                     variant={mode === m ? "default" : "outline"}
                     className={mode === m ? "gradient-hero text-primary-foreground border-0" : ""}
-                    onClick={() => setMode(m)}
+                    onClick={() => updateMode(m)}
                   >
                     {m.charAt(0).toUpperCase() + m.slice(1)}
                   </Button>
@@ -96,7 +119,7 @@ const Products = () => {
               <div className="space-y-1">
                 <button
                   className={`block w-full text-left px-3 py-2 rounded-lg text-sm ${!selectedCategory ? "bg-primary text-primary-foreground" : "hover:bg-secondary text-foreground"}`}
-                  onClick={() => setSelectedCategory("")}
+                  onClick={() => updateCategory("")}
                 >
                   All Categories
                 </button>
@@ -106,7 +129,7 @@ const Products = () => {
                   <button
                     key={cat.slug || cat.id}
                     className={`block w-full text-left px-3 py-2 rounded-lg text-sm ${selectedCategory === String(cat.slug || cat.id) ? "bg-primary text-primary-foreground" : "hover:bg-secondary text-foreground"}`}
-                    onClick={() => { setSelectedCategory(String(cat.slug || cat.id)); setShowFilters(false); }}
+                    onClick={() => updateCategory(String(cat.slug || cat.id))}
                   >
                     {Icon ? <Icon className="mr-2 inline-block h-4 w-4" /> : <span className="mr-2 inline-block">{String(cat.icon || "")}</span>}
                     {cat.name}

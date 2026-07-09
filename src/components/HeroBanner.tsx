@@ -1,8 +1,6 @@
 import { useEffect, useState, type ComponentType } from "react";
-import { Link } from "react-router-dom";
 import {
   Accessibility,
-  ArrowRight,
   BedDouble,
   ChartColumn,
   HeartPulse,
@@ -15,9 +13,11 @@ import {
   Truck,
   Wind,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useHomeContent } from "@/hooks/useContent";
+import firstBannerImage from "@/assets/banners/banner 1 .png";
+import secondBannerImage from "@/assets/banners/banner 2.png";
+import thirdBannerImage from "@/assets/banners/banner3.png";
 
 type BannerSlide = {
   id: number;
@@ -139,6 +139,8 @@ function readText(value: unknown, fallback: string) {
   return text || fallback;
 }
 
+const localBannerImages = [firstBannerImage, secondBannerImage, thirdBannerImage];
+
 const HeroBanner = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
@@ -162,7 +164,7 @@ const HeroBanner = () => {
     return !["0", "false", "inactive", "off", "disabled"].includes(normalized);
   });
 
-  const slides: BannerSlide[] = (visibleSlides.length ? visibleSlides : fallbackSlides).map((slide: any, index: number) => ({
+  const slides: BannerSlide[] = (visibleSlides.length ? visibleSlides : fallbackSlides).slice(0, 3).map((slide: any, index: number) => ({
     id: Number(slide.id ?? index + 1),
     badge: readText(slide.badge ?? slide.badge_text, fallbackSlides[index % fallbackSlides.length].badge),
     title: readText(slide.title ?? slide.heading, fallbackSlides[index % fallbackSlides.length].title),
@@ -172,7 +174,7 @@ const HeroBanner = () => {
     ctaTo: readText(slide.ctaTo ?? slide.cta_to ?? slide.link ?? slide.href, fallbackSlides[index % fallbackSlides.length].ctaTo),
     icon: typeof slide.icon === "string" ? resolveIcon(slide.icon) : fallbackSlides[index % fallbackSlides.length].icon,
     tone: String(slide.tone ?? fallbackSlides[index % fallbackSlides.length].tone),
-    backgroundImage: readText(slide.backgroundImage ?? slide.background_image ?? slide.image, ""),
+    backgroundImage: localBannerImages[index] || readText(slide.backgroundImage ?? slide.background_image ?? slide.image, ""),
   }));
 
   useEffect(() => {
@@ -208,49 +210,23 @@ const HeroBanner = () => {
 
   return (
     <section className="bg-[#eef2f9]">
-      <div className="w-full">
-        <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="w-full">
+      <div className="relative w-full">
+        <Carousel setApi={setApi} opts={{ align: "start", loop: true }} className="relative w-full">
           <CarouselContent className="-ml-0">
             {slides.map((slide) => (
               <CarouselItem key={slide.id} className="basis-full pl-0">
                 <article
-                  className={`relative min-h-[315px] overflow-hidden rounded-none bg-gradient-to-br bg-cover bg-center p-4 text-white sm:p-6 md:min-h-[360px] md:p-8 ${slide.tone}`}
-                  style={
-                    slide.backgroundImage
-                      ? {
-                          backgroundImage: `linear-gradient(rgba(25, 35, 90, 0.62), rgba(25, 35, 90, 0.62)), url(${slide.backgroundImage})`,
-                        }
-                      : undefined
-                  }
+                  aria-label={slide.title}
+                  className={`relative w-full overflow-hidden rounded-none ${slide.tone}`}
+                  style={{ height: "min(50vw, calc(100vh - 64px))" }}
                 >
-                  <div className="absolute -right-10 -top-10 h-48 w-48 rounded-full border border-white/20" />
-                  <div className="absolute -right-6 bottom-5 hidden h-24 w-24 items-center justify-center rounded-full border border-white/25 bg-white/10 backdrop-blur-sm md:flex">
-                    <slide.icon className="h-11 w-11 text-white" />
-                  </div>
-                  <div className="relative z-10 flex h-full flex-col">
-                    <div>
-                      <p className="inline-flex max-w-full rounded-full border border-white/25 bg-white/10 px-3 py-1 text-xs font-semibold tracking-wide">
-                        {slide.badge}
-                      </p>
-                      <h2 className="mt-4 max-w-[18rem] font-display text-2xl font-extrabold leading-tight min-[380px]:max-w-md sm:text-3xl md:max-w-xl">
-                        {slide.title}
-                      </h2>
-                      <p className="mt-3 max-w-xl text-sm text-white/85 md:text-base">{slide.description}</p>
-                      <ul className="mt-4 space-y-1.5 text-sm leading-6 text-white/90">
-                        {slide.points.map((point) => (
-                          <li key={point}>- {point}</li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="mt-6">
-                      <Link to={slide.ctaTo}>
-                        <Button className="rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[#27358b] hover:bg-[#ecf1ff]">
-                          {slide.ctaLabel}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
-                    </div>
-                  </div>
+                  {slide.backgroundImage ? (
+                    <img
+                      src={slide.backgroundImage}
+                      alt={slide.title}
+                      className="h-full w-full object-fill"
+                    />
+                  ) : null}
                 </article>
               </CarouselItem>
             ))}
@@ -260,7 +236,7 @@ const HeroBanner = () => {
           <CarouselNext className="right-4 top-1/2 hidden h-9 w-9 -translate-y-1/2 border-[#d3dbec] bg-white text-[#2b3c94] hover:bg-[#eef2ff] md:flex" />
         </Carousel>
 
-        <div className="flex justify-center gap-2 py-3 md:py-4">
+        <div className="absolute bottom-4 left-0 right-0 z-10 flex justify-center gap-2">
           {slides.map((slide, index) => (
             <button
               key={slide.id}

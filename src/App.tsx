@@ -12,6 +12,7 @@ import ICUAtHome from "./pages/ICUAtHome.tsx";
 import About from "./pages/About.tsx";
 import Contact from "./pages/Contact.tsx";
 import Blog from "./pages/Blog.tsx";
+import BlogDetail from "./pages/BlogDetail.tsx";
 import NotFound from "./pages/NotFound.tsx";
 import {
   PrivacyPolicy,
@@ -54,6 +55,7 @@ const App = () => (
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/vendor-registration" element={<VendorRegistration />} />
             <Route path="/service-policy" element={<ServicePolicy />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />

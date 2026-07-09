@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, Phone, Menu, X } from "lucide-react";
 import { useContactSettings, useSiteSettings } from "@/hooks/useContent";
 
@@ -10,6 +10,7 @@ function stripDigits(value: string) {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
   const navigate = useNavigate();
   const { data: contactSettings } = useContactSettings();
   const { data: siteSettings } = useSiteSettings();
@@ -21,6 +22,12 @@ const Header = () => {
   const siteName = String(siteSettings.site_name || "Sahyadri Surgical");
   const [primaryName, secondaryName = ""] = siteName.split(" ");
   const logoText = String(siteSettings.logo_text || "SS");
+  const currentMode = new URLSearchParams(location.search).get("mode");
+  const isProductMode = (mode: string) => location.pathname === "/products" && currentMode === mode;
+  const navLinkClass = (mode: string, compact = false) =>
+    `flex items-center justify-center border-r border-[#e3e8ef] ${compact ? "w-[60px] text-xs" : "px-7 text-sm"} font-semibold tracking-wide text-[#2c5aa1] transition-colors ${
+      isProductMode(mode) ? "bg-[#d7e4f5] hover:bg-[#cdddf2]" : "hover:bg-[#f4f7fb]"
+    }`;
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -58,14 +65,14 @@ const Header = () => {
           <nav className="flex h-full shrink-0 items-stretch border-l border-[#e3e8ef] lg:hidden">
             <Link
               to="/products?mode=rent"
-              className="flex w-[60px] items-center justify-center border-r border-[#e3e8ef] bg-[#d7e4f5] text-xs font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#cdddf2]"
+              className={navLinkClass("rent", true)}
               onClick={() => setIsMenuOpen(false)}
             >
               RENT
             </Link>
             <Link
               to="/products?mode=buy"
-              className="flex w-[60px] items-center justify-center border-r border-[#e3e8ef] text-xs font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#f4f7fb]"
+              className={navLinkClass("buy", true)}
               onClick={() => setIsMenuOpen(false)}
             >
               BUY
@@ -90,13 +97,13 @@ const Header = () => {
           <nav className="hidden h-full items-stretch border-l border-[#e3e8ef] lg:flex">
             <Link
               to="/products?mode=rent"
-              className="flex items-center justify-center border-r border-[#e3e8ef] bg-[#d7e4f5] px-7 text-sm font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#cdddf2]"
+              className={navLinkClass("rent")}
             >
               RENT
             </Link>
             <Link
               to="/products?mode=buy"
-              className="flex items-center justify-center border-r border-[#e3e8ef] px-7 text-sm font-semibold tracking-wide text-[#2c5aa1] transition-colors hover:bg-[#f4f7fb]"
+              className={navLinkClass("buy")}
             >
               BUY
             </Link>

@@ -151,10 +151,10 @@ const ClientTestimonials = () => {
             With top clients from all over India, we have served more than 500 clients in a timespan of 3 years.
           </p>
 
-          <Carousel setApi={setClientsApi} opts={{ align: "start", loop: true }} className="mt-5 md:hidden">
-            <CarouselContent className="-ml-2">
+          <Carousel setApi={setClientsApi} opts={{ align: "center", loop: true }} className="mt-5 md:hidden">
+            <CarouselContent className="-ml-0">
               {clients.map((client) => (
-                <CarouselItem key={client.name} className="basis-[82%] pl-2">
+                <CarouselItem key={client.name} className="basis-full pl-0">
                   <article className="flex h-[86px] items-center justify-center rounded-lg border border-[#e6e8ec] bg-white p-3 shadow-sm">
                     <img
                       src={client.logo}
