@@ -32,6 +32,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { useAdminAuth } from "@/context/AdminAuthContext";
+import logoImage from "@/assets/logo.png";
 
 const menuItems = [
   { title: "Dashboard", url: "/admin", icon: LayoutDashboard },
@@ -65,8 +66,8 @@ export function AdminSidebar() {
       <SidebarHeader className="p-4 border-b border-border">
         {!collapsed ? (
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg gradient-hero flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">SS</span>
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center">
+              <img src={logoImage} alt="Sahyadri Surgical logo" className="h-full w-full object-contain" />
             </div>
             <div>
               <h2 className="font-display font-bold text-sm text-foreground">Sahyadri Admin</h2>
@@ -74,8 +75,8 @@ export function AdminSidebar() {
             </div>
           </div>
         ) : (
-          <div className="w-8 h-8 rounded-lg gradient-hero flex items-center justify-center mx-auto">
-            <span className="text-primary-foreground font-bold text-sm">SS</span>
+          <div className="mx-auto flex h-9 w-9 items-center justify-center">
+            <img src={logoImage} alt="Sahyadri Surgical logo" className="h-full w-full object-contain" />
           </div>
         )}
       </SidebarHeader>

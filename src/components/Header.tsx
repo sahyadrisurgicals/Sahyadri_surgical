@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, Phone, Menu, X } from "lucide-react";
 import { useContactSettings, useSiteSettings } from "@/hooks/useContent";
+import logoImage from "@/assets/logo.png";
 
 function stripDigits(value: string) {
   return value.replace(/\D/g, "");
@@ -20,8 +21,6 @@ const Header = () => {
     String(siteSettings.whatsapp_message || "Hi, I want to inquire about medical equipment");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
   const siteName = String(siteSettings.site_name || "Sahyadri Surgical");
-  const [primaryName, secondaryName = ""] = siteName.split(" ");
-  const logoText = String(siteSettings.logo_text || "SS");
   const currentMode = new URLSearchParams(location.search).get("mode");
   const isProductMode = (mode: string) => location.pathname === "/products" && currentMode === mode;
   const navLinkClass = (mode: string, compact = false) =>
@@ -50,15 +49,13 @@ const Header = () => {
           </button>
 
           {/* Logo */}
-          <Link to="/" className="flex min-w-0 flex-1 shrink items-center gap-2 px-2 sm:flex-none sm:px-0 sm:pr-6 md:border-r md:border-[#e3e8ef]">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg gradient-hero sm:h-9 sm:w-9 sm:rounded-xl">
-              <span className="text-primary-foreground font-display font-bold text-base">{logoText}</span>
-            </div>
-            <div className="min-w-0">
-              <h1 className="truncate font-display text-sm font-bold leading-tight text-[#2d5ea9] sm:text-base">
-                {primaryName}
-              </h1>
-              <p className="-mt-0.5 truncate text-[10px] text-[#7a8599] sm:text-xs">{secondaryName || "Surgical"}</p>
+          <Link to="/" className="flex min-w-0 flex-1 shrink items-center px-2 sm:flex-none sm:px-0 sm:pr-6 md:border-r md:border-[#e3e8ef]">
+            <div className="flex h-11 w-24 shrink-0 items-center justify-start sm:h-14 sm:w-32">
+              <img
+                src={logoImage}
+                alt={`${siteName} logo`}
+                className="h-full w-full object-contain"
+              />
             </div>
           </Link>
 

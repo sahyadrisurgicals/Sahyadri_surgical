@@ -13,11 +13,12 @@ import {
   Truck,
   Wind,
 } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Carousel, CarouselApi, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useHomeContent } from "@/hooks/useContent";
-import firstBannerImage from "@/assets/banners/banner 1 .png";
+import firstBannerImage from "@/assets/banners/banner1.png";
 import secondBannerImage from "@/assets/banners/banner 2.png";
-import thirdBannerImage from "@/assets/banners/banner3.png";
+import thirdBannerImage from "@/assets/banners/banner 3.png";
 
 type BannerSlide = {
   id: number;
@@ -215,9 +216,10 @@ const HeroBanner = () => {
           <CarouselContent className="-ml-0">
             {slides.map((slide) => (
               <CarouselItem key={slide.id} className="basis-full pl-0">
-                <article
-                  aria-label={slide.title}
-                  className={`relative w-full overflow-hidden rounded-none ${slide.tone}`}
+                <Link
+                  to={slide.ctaTo}
+                  aria-label={`${slide.ctaLabel}: ${slide.title}`}
+                  className={`relative block w-full overflow-hidden rounded-none ${slide.tone}`}
                   style={{ height: "min(50vw, calc(100vh - 64px))" }}
                 >
                   {slide.backgroundImage ? (
@@ -227,7 +229,7 @@ const HeroBanner = () => {
                       className="h-full w-full object-fill"
                     />
                   ) : null}
-                </article>
+                </Link>
               </CarouselItem>
             ))}
           </CarouselContent>
