@@ -97,7 +97,7 @@ const About = () => {
   const hero = aboutContent?.hero || {
     title: "Hospital-grade medical equipment made easier for home care.",
     subtitle:
-      "Sahyadri Surgical helps families rent or buy reliable medical equipment for recovery, elderly care, mobility support, respiratory care, and ICU-at-home needs.",
+      "Rent For Health helps families rent or buy reliable medical equipment for recovery, elderly care, mobility support, respiratory care, and ICU-at-home needs.",
     cta_primary_text: "Explore Products",
     cta_primary_link: "/products",
     cta_secondary_text: "Contact Team",
@@ -125,7 +125,7 @@ const About = () => {
         <div className="section-container py-12 md:py-16">
           <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-white/70">About Sahyadri Surgical</p>
+              <p className="text-sm font-semibold uppercase tracking-wide text-white/70">About Rent For Health</p>
               <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight md:text-5xl">
                 {hero.title}
               </h1>
@@ -245,7 +245,7 @@ const About = () => {
             <div>
               <h2 className="font-display text-2xl font-bold">Need equipment guidance?</h2>
               <p className="mt-2 text-sm text-white/80">
-                Speak with Sahyadri Surgical for rent, purchase, or home-care equipment support.
+                Speak with Rent For Health for rent, purchase, or home-care equipment support.
               </p>
             </div>
             <div className="grid grid-cols-1 gap-3 min-[420px]:flex min-[420px]:flex-wrap">

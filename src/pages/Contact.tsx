@@ -18,7 +18,7 @@ const Contact = () => {
   const whatsappMessage = encodeURIComponent(
     String(siteSettings.whatsapp_message || "Hi, I want to inquire about medical equipment")
   );
-  const email = contactSettings?.email || String(siteSettings.support_email || "info@sahyadrisurgicals.com");
+  const email = contactSettings?.email || String(siteSettings.support_email || "info@rentforhealth.com");
   const address = contactSettings?.address || "Pune, Maharashtra, India";
   const mapIframe = contactSettings?.map_iframe || "";
   const businessHours = contactSettings?.business_hours || "Monday - Sunday, 8:30 am to 9:00 pm";
@@ -42,7 +42,7 @@ const Contact = () => {
             <div className="grid gap-6 lg:grid-cols-[0.82fr_1.18fr]">
               <aside className="overflow-hidden rounded-lg bg-[#315f9d] text-white shadow-lg shadow-[#315f9d]/20">
                 <div className="p-6 md:p-8">
-                  <p className="text-sm font-semibold uppercase tracking-wide text-white/70">Sahyadri Surgical</p>
+                  <p className="text-sm font-semibold uppercase tracking-wide text-white/70">Rent For Health</p>
                   <h2 className="mt-3 font-display text-2xl font-extrabold leading-tight sm:text-3xl">
                     Medical Equipment Support Desk
                   </h2>
@@ -122,7 +122,7 @@ const Contact = () => {
                   <div className="grid gap-4 md:grid-cols-2">
                     <div className="rounded-lg bg-[#f7f8fb] p-5">
                       <p className="text-sm font-semibold uppercase tracking-wide text-[#315f9d]">Location</p>
-                      <p className="mt-2 text-lg font-semibold text-[#333]">Sahyadri Surgical</p>
+                      <p className="mt-2 text-lg font-semibold text-[#333]">Rent For Health</p>
                       <p className="mt-1 text-sm leading-relaxed text-[#666]">{address}</p>
                     </div>
                     <div className="rounded-lg bg-[#f7f8fb] p-5">
@@ -151,7 +151,7 @@ const Contact = () => {
                         style={{ border: 0 }}
                         allowFullScreen
                         loading="lazy"
-                        title="Sahyadri Surgical Location"
+                        title="Rent For Health Location"
                       />
                     ) : (
                       <div className="flex h-full items-center justify-center bg-[#f7f8fb] text-sm text-[#666]">

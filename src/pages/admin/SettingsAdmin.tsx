@@ -10,15 +10,15 @@ import { toast } from "sonner";
 import { changeAdminPassword, fetchSiteSettings, updateSiteSettings } from "@/lib/api";
 
 const defaultSettings = {
-  site_name: "Sahyadri Surgical",
+  site_name: "Rent For Health",
   logo_text: "SS",
   footer_credit: "Designed by Webakoof",
-  footer_copyright: "2026 Sahyadri Surgical. All Rights Reserved.",
+  footer_copyright: "2026 Rent For Health. All Rights Reserved.",
   call_number: "+919876543210",
   whatsapp_number: "919876543210",
   whatsapp_message: "Hi, I want to inquire about medical equipment",
   primary_city: "Pune",
-  support_email: "info@sahyadrisurgicals.com",
+  support_email: "info@rentforhealth.com",
   support_phone: "+91 98765 43210",
   social_links: JSON.stringify({ facebook: "", instagram: "", linkedin: "", youtube: "" }, null, 2),
 };

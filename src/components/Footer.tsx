@@ -3,7 +3,7 @@ import { useSiteSettings } from "@/hooks/useContent";
 
 const footerColumns = [
   {
-    title: "KNOW SAHYADRI SURGICAL",
+    title: "KNOW RENT FOR HEALTH",
     links: [
       { to: "/about", label: "About Us" },
       { to: "/contact", label: "Contact Us" },
@@ -28,7 +28,7 @@ const footerColumns = [
 const Footer = () => {
   const { data: siteSettings } = useSiteSettings();
   const footerCredit = String(siteSettings.footer_credit || "Designed by");
-  const footerCopyright = String(siteSettings.footer_copyright || "2026 Sahyadri Surgical. All Rights Reserved.");
+  const footerCopyright = String(siteSettings.footer_copyright || "2026 Rent For Health. All Rights Reserved.");
   const footerPrefix = footerCredit.replace(/webakoof/i, "").trim() || "Designed by";
 
   return (

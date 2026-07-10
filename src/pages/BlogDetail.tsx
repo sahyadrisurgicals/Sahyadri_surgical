@@ -147,7 +147,7 @@ const BlogDetail = () => {
               <div className="rounded-lg bg-[#203f77] p-5 text-white">
                 <h2 className="font-display text-lg font-bold">Need equipment support?</h2>
                 <p className="mt-2 text-sm leading-6 text-white/85">
-                  Talk to Sahyadri Surgical for rental, purchase, delivery, and setup guidance.
+                  Talk to Rent For Health for rental, purchase, delivery, and setup guidance.
                 </p>
                 <Link to="/products?mode=rent" className="mt-4 inline-flex items-center gap-2 text-sm font-semibold">
                   Explore Products

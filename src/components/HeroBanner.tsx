@@ -140,7 +140,7 @@ function readText(value: unknown, fallback: string) {
   return text || fallback;
 }
 
-const localBannerImages = [firstBannerImage, secondBannerImage, thirdBannerImage];
+const localBannerImages = [secondBannerImage, firstBannerImage, thirdBannerImage];
 
 const HeroBanner = () => {
   const [api, setApi] = useState<CarouselApi>();

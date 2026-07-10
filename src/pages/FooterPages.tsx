@@ -454,7 +454,7 @@ export const ServicePolicy = () => (
               icon: ShieldCheck,
               title: "Damage Policy",
               paragraphs: [
-                "Customers are responsible for maintaining the products and equipment supplied by Sahyadri Surgical in proper condition during their possession or usage period. Any loss, theft, misuse, accidental damage, or destruction of the equipment may result in repair or replacement charges based on the extent of damage and the prevailing market value of the product.",
+                "Customers are responsible for maintaining the products and equipment supplied by Rent For Health in proper condition during their possession or usage period. Any loss, theft, misuse, accidental damage, or destruction of the equipment may result in repair or replacement charges based on the extent of damage and the prevailing market value of the product.",
                 "Upon return or collection of the equipment, our authorized representatives may inspect the items to determine their condition and assess any applicable charges.",
               ],
             },
@@ -462,7 +462,7 @@ export const ServicePolicy = () => (
               icon: Settings,
               title: "Maintenance Policy",
               paragraphs: [
-                "Sahyadri Surgical will provide maintenance and technical support for eligible products and equipment during the agreed service or rental period, subject to the terms of the contract.",
+                "Rent For Health will provide maintenance and technical support for eligible products and equipment during the agreed service or rental period, subject to the terms of the contract.",
                 "This coverage does not include damages resulting from negligence, improper handling, unauthorized repairs, misuse, electrical faults caused externally, or operation contrary to the manufacturer's instructions.",
                 "Customers should report technical issues to our support team promptly. We will make reasonable efforts to resolve reported problems within the committed service timelines. If delays occur due to circumstances beyond our control, customers will be informed accordingly.",
               ],
@@ -472,9 +472,9 @@ export const ServicePolicy = () => (
               title: "General Terms",
               paragraphs: [
                 "Orders may be modified or cancelled before dispatch or delivery confirmation without additional charges. Once the order has been processed or dispatched, applicable transportation, handling, or cancellation charges may apply.",
-                "Customers assume responsibility for the proper use of all products and equipment supplied by Sahyadri Surgical. The company shall not be held liable for any direct or indirect losses, injuries, damages, or claims arising from incorrect usage, negligence, or operation of the products outside their intended purpose.",
+                "Customers assume responsibility for the proper use of all products and equipment supplied by Rent For Health. The company shall not be held liable for any direct or indirect losses, injuries, damages, or claims arising from incorrect usage, negligence, or operation of the products outside their intended purpose.",
                 "Any disputes arising from the use of our products or services shall be subject to the jurisdiction of the competent courts in Maharashtra, India.",
-                "Sahyadri Surgical reserves the right to refuse, suspend, or discontinue service where deemed necessary due to policy violations, safety concerns, payment issues, or other legitimate business reasons.",
+                "Rent For Health reserves the right to refuse, suspend, or discontinue service where deemed necessary due to policy violations, safety concerns, payment issues, or other legitimate business reasons.",
               ],
             },
           ].map((section) => (
@@ -514,7 +514,7 @@ export const PrivacyPolicy = () => (
         </div>
         <h1 className="font-display text-3xl font-extrabold text-white md:text-4xl">Privacy Policy</h1>
         <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-white/85 md:text-base">
-          Sahyadri Surgical respects your privacy and is committed to protecting the information shared with us
+          Rent For Health respects your privacy and is committed to protecting the information shared with us
           through our website, forms, orders, and customer support interactions.
         </p>
       </div>
@@ -531,7 +531,7 @@ export const PrivacyPolicy = () => (
               <div>
                 <h2 className="font-display text-xl font-bold text-[#305c9d]">Information We May Collect</h2>
                 <p className="mt-2 text-sm leading-relaxed text-[#666]">
-                  To provide better products and services, Sahyadri Surgical may collect certain information from users,
+                  To provide better products and services, Rent For Health may collect certain information from users,
                   including but not limited to:
                 </p>
                 <div className="mt-5 grid gap-3 md:grid-cols-2">
@@ -579,7 +579,7 @@ export const PrivacyPolicy = () => (
                 icon: Lock,
                 title: "Data Protection and Security",
                 intro:
-                  "Sahyadri Surgical implements appropriate technical and organizational security measures to safeguard your personal information from unauthorized access, misuse, disclosure, alteration, or loss.",
+                  "Rent For Health implements appropriate technical and organizational security measures to safeguard your personal information from unauthorized access, misuse, disclosure, alteration, or loss.",
                 points: [
                   "We work to maintain strong security standards.",
                   "No method of internet transmission or electronic storage can guarantee absolute security.",
@@ -601,7 +601,7 @@ export const PrivacyPolicy = () => (
                 icon: ExternalLink,
                 title: "Third-Party Websites",
                 intro:
-                  "Our website may contain links to external websites or services for your convenience. Sahyadri Surgical is not responsible for the privacy practices, policies, or content of third-party websites.",
+                  "Our website may contain links to external websites or services for your convenience. Rent For Health is not responsible for the privacy practices, policies, or content of third-party websites.",
                 points: ["Users are encouraged to review those privacy policies before sharing any information."],
               },
               {
@@ -615,7 +615,7 @@ export const PrivacyPolicy = () => (
                 icon: ShieldCheck,
                 title: "Your Consent",
                 intro:
-                  "By accessing or using the Sahyadri Surgical website, you acknowledge that you have read, understood, and agreed to the terms outlined in this Privacy Policy.",
+                  "By accessing or using the Rent For Health website, you acknowledge that you have read, understood, and agreed to the terms outlined in this Privacy Policy.",
                 points: [],
               },
             ].map((section) => (
@@ -663,7 +663,7 @@ export const ShippingCancellationPolicy = () => (
         </h1>
         <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-white/85 md:text-base">
           Information about enquiries, availability, delivery timelines, inspection, cancellations, access requirements,
-          and assistance for Sahyadri Surgical products.
+          and assistance for Rent For Health products.
         </p>
       </div>
     </section>
@@ -676,7 +676,7 @@ export const ShippingCancellationPolicy = () => (
               icon: MessageSquareText,
               title: "Product Enquiry Policy",
               paragraphs: [
-                "Sahyadri Surgical primarily operates on an enquiry and quotation basis. Submission of an enquiry through our website does not constitute an order confirmation or purchase agreement.",
+                "Rent For Health primarily operates on an enquiry and quotation basis. Submission of an enquiry through our website does not constitute an order confirmation or purchase agreement.",
                 "Our team will review your enquiry and contact you with product details, availability, pricing, and delivery timelines wherever applicable.",
               ],
             },
@@ -692,7 +692,7 @@ export const ShippingCancellationPolicy = () => (
               title: "Delivery Information",
               paragraphs: [
                 "For confirmed orders processed offline or through direct communication, estimated delivery timelines will be shared separately with the customer.",
-                "Sahyadri Surgical shall not be responsible for delays caused by circumstances beyond reasonable control.",
+                "Rent For Health shall not be responsible for delays caused by circumstances beyond reasonable control.",
               ],
               points: [
                 "Product availability",
@@ -730,7 +730,7 @@ export const ShippingCancellationPolicy = () => (
               icon: Scale,
               title: "Limitation of Responsibility",
               paragraphs: [
-                "Sahyadri Surgical provides product information and quotations based on the details supplied by customers. Final product suitability and application should be verified by qualified medical professionals or procurement teams before use.",
+                "Rent For Health provides product information and quotations based on the details supplied by customers. Final product suitability and application should be verified by qualified medical professionals or procurement teams before use.",
                 "The company shall not be held responsible for losses or damages arising from incorrect product selection, improper handling, or usage outside the intended purpose.",
               ],
             },
@@ -738,7 +738,7 @@ export const ShippingCancellationPolicy = () => (
               icon: UserCheck,
               title: "Contact for Assistance",
               paragraphs: [
-                "For enquiries regarding product availability, quotations, delivery schedules, or support, customers may contact the Sahyadri Surgical team through the contact information provided on our website.",
+                "For enquiries regarding product availability, quotations, delivery schedules, or support, customers may contact the Rent For Health team through the contact information provided on our website.",
               ],
             },
           ].map((section) => (
@@ -788,7 +788,7 @@ export const TermsConditions = () => (
         </div>
         <h1 className="font-display text-3xl font-extrabold text-white md:text-4xl">Terms and Conditions</h1>
         <p className="mx-auto mt-3 max-w-3xl text-sm leading-relaxed text-white/85 md:text-base">
-          These Terms and Conditions govern the use of the Sahyadri Surgical website, products, and services. By
+          These Terms and Conditions govern the use of the Rent For Health website, products, and services. By
           accessing our website or placing an order with us, you agree to comply with these terms.
         </p>
       </div>
@@ -802,8 +802,7 @@ export const TermsConditions = () => (
               <div>
                 <h2 className="font-display text-xl font-bold text-[#305c9d]">Agreement Overview</h2>
                 <p className="mt-2 max-w-3xl text-sm leading-relaxed text-[#666]">
-                  Please read these terms carefully before using our website, purchasing products, or engaging Sahyadri
-                  Surgical for services.
+                  Please read these terms carefully before using our website, purchasing products, or engaging Rent For Health for services.
                 </p>
               </div>
               <div className="flex gap-3">
@@ -821,11 +820,11 @@ export const TermsConditions = () => (
             {[
               {
                 title: "Introduction",
-                text: "These Terms and Conditions govern the use of the Sahyadri Surgical website, products, and services. By accessing our website or placing an order with us, you agree to comply with these terms.",
+                text: "These Terms and Conditions govern the use of the Rent For Health website, products, and services. By accessing our website or placing an order with us, you agree to comply with these terms.",
               },
               {
                 title: "Orders and Purchases",
-                text: "All product orders are subject to availability and acceptance by Sahyadri Surgical. We reserve the right to refuse or cancel any order due to stock limitations, pricing errors, or other unforeseen circumstances.",
+                text: "All product orders are subject to availability and acceptance by Rent For Health. We reserve the right to refuse or cancel any order due to stock limitations, pricing errors, or other unforeseen circumstances.",
               },
               {
                 title: "Payment Terms",
@@ -849,11 +848,11 @@ export const TermsConditions = () => (
               },
               {
                 title: "Warranty Disclaimer",
-                text: "Manufacturer warranties, where applicable, shall apply to products supplied by Sahyadri Surgical. Except as expressly stated, no additional warranties are provided.",
+                text: "Manufacturer warranties, where applicable, shall apply to products supplied by Rent For Health. Except as expressly stated, no additional warranties are provided.",
               },
               {
                 title: "Limitation of Liability",
-                text: "Sahyadri Surgical shall not be held responsible for any indirect, incidental, special, or consequential damages arising from the use or inability to use products supplied by us.",
+                text: "Rent For Health shall not be held responsible for any indirect, incidental, special, or consequential damages arising from the use or inability to use products supplied by us.",
               },
               {
                 title: "Force Majeure",
@@ -861,11 +860,11 @@ export const TermsConditions = () => (
               },
               {
                 title: "Intellectual Property",
-                text: "All website content including logos, graphics, text, product descriptions, and designs remain the intellectual property of Sahyadri Surgical unless otherwise stated.",
+                text: "All website content including logos, graphics, text, product descriptions, and designs remain the intellectual property of Rent For Health unless otherwise stated.",
               },
               {
                 title: "Confidentiality",
-                text: "Any confidential information exchanged between Sahyadri Surgical and its customers shall be treated with appropriate care and shall not be disclosed except where required by law.",
+                text: "Any confidential information exchanged between Rent For Health and its customers shall be treated with appropriate care and shall not be disclosed except where required by law.",
               },
               {
                 title: "Compliance with Laws",
@@ -873,11 +872,11 @@ export const TermsConditions = () => (
               },
               {
                 title: "Ownership of Goods",
-                text: "Ownership of products shall transfer to the customer only after full payment has been received and cleared by Sahyadri Surgical.",
+                text: "Ownership of products shall transfer to the customer only after full payment has been received and cleared by Rent For Health.",
               },
               {
                 title: "Changes to Terms",
-                text: "Sahyadri Surgical reserves the right to amend or update these Terms and Conditions at any time. Revised terms will become effective upon publication on the website.",
+                text: "Rent For Health reserves the right to amend or update these Terms and Conditions at any time. Revised terms will become effective upon publication on the website.",
               },
               {
                 title: "Severability",
@@ -885,7 +884,7 @@ export const TermsConditions = () => (
               },
               {
                 title: "Entire Agreement",
-                text: "These Terms and Conditions constitute the complete agreement between Sahyadri Surgical and the customer regarding the use of our website, products, and services.",
+                text: "These Terms and Conditions constitute the complete agreement between Rent For Health and the customer regarding the use of our website, products, and services.",
               },
               {
                 title: "Governing Law",
@@ -893,7 +892,7 @@ export const TermsConditions = () => (
               },
               {
                 title: "Contact Information",
-                text: "For any questions regarding these Terms and Conditions, customers may contact Sahyadri Surgical through the contact details provided on our website.",
+                text: "For any questions regarding these Terms and Conditions, customers may contact Rent For Health through the contact details provided on our website.",
               },
             ].map((term, index) => (
               <section key={term.title} className="rounded-lg border border-[#d9dde5] bg-white p-5 shadow-sm">
@@ -955,7 +954,7 @@ export const ReferAndEarn = () => (
                   <h2 className="font-display text-xl font-bold text-[#305c9d]">Help Others, Earn Rewards</h2>
                 </div>
                 <p className="text-sm leading-7 text-[#5f6673]">
-                  Help patients, caregivers, hospitals, and families by referring Sahyadri Surgical for medical
+                  Help patients, caregivers, hospitals, and families by referring Rent For Health for medical
                   equipment needs. If the referral converts successfully, eligible rewards are processed as per the
                   order value.
                 </p>

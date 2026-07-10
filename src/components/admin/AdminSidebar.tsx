@@ -67,16 +67,16 @@ export function AdminSidebar() {
         {!collapsed ? (
           <div className="flex items-center gap-2">
             <div className="flex h-9 w-9 shrink-0 items-center justify-center">
-              <img src={logoImage} alt="Sahyadri Surgical logo" className="h-full w-full object-contain" />
+              <img src={logoImage} alt="Rent For Health logo" className="h-full w-full object-contain" />
             </div>
             <div>
-              <h2 className="font-display font-bold text-sm text-foreground">Sahyadri Admin</h2>
+              <h2 className="font-display font-bold text-sm text-foreground">Rent For Health Admin</h2>
               <p className="text-xs text-muted-foreground">Management Panel</p>
             </div>
           </div>
         ) : (
           <div className="mx-auto flex h-9 w-9 items-center justify-center">
-            <img src={logoImage} alt="Sahyadri Surgical logo" className="h-full w-full object-contain" />
+            <img src={logoImage} alt="Rent For Health logo" className="h-full w-full object-contain" />
           </div>
         )}
       </SidebarHeader>

@@ -1,5 +1,5 @@
 export const defaultAdmin = {
-  name: "Sahyadri Surgical Admin",
+  name: "Rent For Health Admin",
   username: "sahyadri-surgical_admin",
   password: "Sahyadrisurgical@123##",
   role: "super_admin",
@@ -565,7 +565,7 @@ export const homeSections = [
     section_label: "Home SEO",
     is_active: 1,
     content_json: JSON.stringify({
-      meta_title: "Sahyadri Surgical | Medical Equipment Rental and Sales",
+      meta_title: "Rent For Health | Medical Equipment Rental and Sales",
       meta_description:
         "Rent and buy hospital beds, wheelchairs, oxygen equipment, and home ICU solutions.",
       keywords: "medical equipment rental, hospital bed, wheelchair, oxygen concentrator",
@@ -582,7 +582,7 @@ export const aboutSections = [
     content_json: JSON.stringify({
       title: "Hospital-grade medical equipment made easier for home care.",
       subtitle:
-        "Sahyadri Surgical helps families rent or buy reliable medical equipment for recovery, elderly care, mobility support, respiratory care, and ICU-at-home needs.",
+        "Rent For Health helps families rent or buy reliable medical equipment for recovery, elderly care, mobility support, respiratory care, and ICU-at-home needs.",
       cta_primary_text: "Explore Products",
       cta_primary_link: "/products",
       cta_secondary_text: "Contact Team",
@@ -674,9 +674,9 @@ export const aboutSections = [
     section_label: "About SEO",
     is_active: 1,
     content_json: JSON.stringify({
-      meta_title: "About Sahyadri Surgical",
-      meta_description: "Learn more about Sahyadri Surgical home-care medical equipment solutions.",
-      keywords: "about sahyadri surgical, home care equipment, medical rental",
+      meta_title: "About Rent For Health",
+      meta_description: "Learn more about Rent For Health home-care medical equipment solutions.",
+      keywords: "about rent for health, home care equipment, medical rental",
       canonical_url: "https://vital-home-solutions.vercel.app/about",
     }),
   },
@@ -685,7 +685,7 @@ export const aboutSections = [
 export const contactSettings = {
   phone: "+91 98765 43210",
   whatsapp: "+91 98765 43210",
-  email: "info@sahyadrisurgicals.com",
+  email: "info@rentforhealth.com",
   address: "Pune, Maharashtra, India",
   map_iframe:
     "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d242117.68070802!2d73.72288!3d18.524598!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2bf2e67461101%3A0x828d43bf9d9ee343!2sPune%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000",
@@ -699,15 +699,15 @@ export const contactSettings = {
 };
 
 export const siteSettings = [
-  { setting_key: "site_name", setting_value: "Sahyadri Surgical" },
+  { setting_key: "site_name", setting_value: "Rent For Health" },
   { setting_key: "logo_text", setting_value: "SS" },
   { setting_key: "footer_credit", setting_value: "Designed by Webakoof" },
-  { setting_key: "footer_copyright", setting_value: "2026 Sahyadri Surgical. All Rights Reserved." },
+  { setting_key: "footer_copyright", setting_value: "2026 Rent For Health. All Rights Reserved." },
   { setting_key: "call_number", setting_value: "+919876543210" },
   { setting_key: "whatsapp_number", setting_value: "919876543210" },
   { setting_key: "whatsapp_message", setting_value: "Hi, I want to inquire about medical equipment" },
   { setting_key: "primary_city", setting_value: "Pune" },
-  { setting_key: "support_email", setting_value: "info@sahyadrisurgicals.com" },
+  { setting_key: "support_email", setting_value: "info@rentforhealth.com" },
   { setting_key: "support_phone", setting_value: "+91 98765 43210" },
   {
     setting_key: "social_links",
@@ -723,7 +723,7 @@ export const siteSettings = [
 export const seoSettings = [
   {
     page_name: "home",
-    meta_title: "Sahyadri Surgical | Medical Equipment Rental and Sales",
+    meta_title: "Rent For Health | Medical Equipment Rental and Sales",
     meta_description:
       "Rent and buy hospital beds, wheelchairs, oxygen equipment, and home ICU solutions.",
     keywords: "medical equipment rental, hospital bed, wheelchair, oxygen concentrator",
@@ -733,7 +733,7 @@ export const seoSettings = [
   },
   {
     page_name: "products",
-    meta_title: "Products | Sahyadri Surgical",
+    meta_title: "Products | Rent For Health",
     meta_description: "Browse medical equipment and home-care solutions available to rent or buy.",
     keywords: "products, medical equipment, rental, buy",
     og_image:
@@ -742,8 +742,8 @@ export const seoSettings = [
   },
   {
     page_name: "about",
-    meta_title: "About | Sahyadri Surgical",
-    meta_description: "Learn more about Sahyadri Surgical and our home-care medical solutions.",
+    meta_title: "About | Rent For Health",
+    meta_description: "Learn more about Rent For Health and our home-care medical solutions.",
     keywords: "about, home care, medical solutions",
     og_image:
       "https://images.unsplash.com/photo-1583947215259-38e31be8751f?w=1200&h=630&fit=crop",
@@ -751,16 +751,16 @@ export const seoSettings = [
   },
   {
     page_name: "contact",
-    meta_title: "Contact | Sahyadri Surgical",
-    meta_description: "Contact Sahyadri Surgical for equipment guidance, rentals, or purchases.",
-    keywords: "contact, sahyadri surgical, medical equipment",
+    meta_title: "Contact | Rent For Health",
+    meta_description: "Contact Rent For Health for equipment guidance, rentals, or purchases.",
+    keywords: "contact, rent for health, medical equipment",
     og_image:
       "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&h=630&fit=crop",
     canonical_url: "https://vital-home-solutions.vercel.app/contact",
   },
   {
     page_name: "blog",
-    meta_title: "Blog | Sahyadri Surgical",
+    meta_title: "Blog | Rent For Health",
     meta_description: "Practical guides for home healthcare equipment, recovery, and caregiver support.",
     keywords: "blog, home care, recovery, caregiver support",
     og_image:
@@ -769,8 +769,8 @@ export const seoSettings = [
   },
   {
     page_name: "vendor-registration",
-    meta_title: "Vendor Registration | Sahyadri Surgical",
-    meta_description: "Register as a vendor with Sahyadri Surgical.",
+    meta_title: "Vendor Registration | Rent For Health",
+    meta_description: "Register as a vendor with Rent For Health.",
     keywords: "vendor registration, medical equipment vendor",
     og_image:
       "https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1200&h=630&fit=crop",

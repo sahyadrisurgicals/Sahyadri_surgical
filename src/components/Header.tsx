@@ -20,7 +20,7 @@ const Header = () => {
   const whatsappMessage =
     String(siteSettings.whatsapp_message || "Hi, I want to inquire about medical equipment");
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-  const siteName = String(siteSettings.site_name || "Sahyadri Surgical");
+  const siteName = String(siteSettings.site_name || "Rent For Health");
   const currentMode = new URLSearchParams(location.search).get("mode");
   const isProductMode = (mode: string) => location.pathname === "/products" && currentMode === mode;
   const navLinkClass = (mode: string, compact = false) =>

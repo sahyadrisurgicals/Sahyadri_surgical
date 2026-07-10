@@ -174,7 +174,7 @@ const Blog = () => {
               </div>
               <h2 className="mt-4 font-display text-2xl font-bold md:text-3xl">Need help choosing the right equipment?</h2>
               <p className="mt-3 max-w-2xl text-white/85">
-                Share the patient condition and expected duration. The Sahyadri team can guide rent or purchase options clearly.
+                Share the patient condition and expected duration. The Rent For Health team can guide rent or purchase options clearly.
               </p>
             </div>
             <Link

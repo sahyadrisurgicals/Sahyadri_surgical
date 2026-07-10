@@ -39,7 +39,7 @@ export default function AdminLogin() {
             <ShieldCheck className="h-6 w-6" />
           </div>
           <CardTitle className="font-display text-2xl">Admin Login</CardTitle>
-          <p className="text-sm text-muted-foreground">Sign in to manage the Sahyadri Surgical website.</p>
+          <p className="text-sm text-muted-foreground">Sign in to manage the Rent For Health website.</p>
         </CardHeader>
         <CardContent>
           <form className="space-y-4" onSubmit={handleSubmit}>

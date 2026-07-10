@@ -1,6 +1,6 @@
 # Vital Home Solutions
 
-Frontend plus PHP/MySQL backend and MySQL-powered admin panel for Sahyadri Surgical.
+Frontend plus PHP/MySQL backend and MySQL-powered admin panel for Rent For Health.
 
 ## What's included
 

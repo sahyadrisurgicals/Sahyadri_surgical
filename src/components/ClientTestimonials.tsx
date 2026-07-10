@@ -251,7 +251,7 @@ const ClientTestimonials = () => {
             What Is Rent For Health?
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-[#5b6572] md:text-[15px]">
-            Sahyadri Surgicals helps families access hospital-grade medical equipment at home without heavy purchase costs.
+            Rent For Health helps families access hospital-grade medical equipment at home without heavy purchase costs.
             Many patients need equipment for short-term recovery, and buying every device is not practical. Our rent-for-health
             model makes care affordable with sanitized, certified equipment, quick delivery, and support for setup and usage.
             We serve home-care, post-surgery, elderly care, and critical-care needs with transparent pricing and dependable service.
@@ -278,7 +278,7 @@ const ClientTestimonials = () => {
             <p className="mt-2 break-words text-sm leading-relaxed text-[#4f5b6b]">
               Phone: <a href="tel:+919876543210" className="font-semibold text-[#2f5ca6]">+91 98765 43210</a> |
               {" "}WhatsApp: <a href="https://wa.me/919876543210" target="_blank" rel="noreferrer" className="font-semibold text-[#2f5ca6]">+91 98765 43210</a> |
-              {" "}Email: <a href="mailto:info@sahyadrisurgicals.com" className="font-semibold text-[#2f5ca6]">info@sahyadrisurgicals.com</a> |
+              {" "}Email: <a href="mailto:info@rentforhealth.com" className="font-semibold text-[#2f5ca6]">info@rentforhealth.com</a> |
               {" "}Address: Pune, Maharashtra, India
             </p>
           </article>
