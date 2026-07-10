@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Search, Phone, Menu, X } from "lucide-react";
 import { useContactSettings, useSiteSettings } from "@/hooks/useContent";
+import { SITE_HOME_PATH } from "@/lib/sitePaths";
 import logoImage from "@/assets/logo.png";
 
 function stripDigits(value: string) {
@@ -49,7 +50,7 @@ const Header = () => {
           </button>
 
           {/* Logo */}
-          <Link to="/" className="flex min-w-0 flex-1 shrink items-center px-2 sm:flex-none sm:px-0 sm:pr-6 md:border-r md:border-[#e3e8ef]">
+          <Link to={SITE_HOME_PATH} className="flex min-w-0 flex-1 shrink items-center px-2 sm:flex-none sm:px-0 sm:pr-6 md:border-r md:border-[#e3e8ef]">
             <div className="flex h-11 w-24 shrink-0 items-center justify-start sm:h-14 sm:w-32">
               <img
                 src={logoImage}

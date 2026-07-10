@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AdminAuthProvider } from "@/context/AdminAuthContext";
 import { ProtectedRoute } from "@/components/admin/ProtectedRoute";
+import { SITE_HOME_PATH } from "@/lib/sitePaths";
+import ComingSoon from "./pages/ComingSoon.tsx";
 import Index from "./pages/Index.tsx";
 import Products from "./pages/Products.tsx";
 import ProductDetail from "./pages/ProductDetail.tsx";
@@ -48,7 +50,8 @@ const App = () => (
       <AdminAuthProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
+            <Route path="/" element={<ComingSoon />} />
+            <Route path={SITE_HOME_PATH} element={<Index />} />
             <Route path="/products" element={<Products />} />
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/icu-at-home" element={<ICUAtHome />} />
